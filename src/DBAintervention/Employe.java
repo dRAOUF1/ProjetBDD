@@ -20,7 +20,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import net.miginfocom.swing.MigLayout;
 
-public class Client {
+public class Employe {
 
 	private JFrame frame;
 	private JTable table;
@@ -38,7 +38,7 @@ public class Client {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Client window = new Client();
+					Employe window = new Employe();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +50,7 @@ public class Client {
 	/**
 	 * Create the application.
 	 */
-	public Client() {
+	public Employe() {
 		initialize();
 	}
 
@@ -79,25 +79,24 @@ public class Client {
 		table.setFont(new Font("Arial", Font.PLAIN, 12));
 		
 		btnNewButton = new JButton("Retour");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				DBAINTERVENTION fDbaintervention=new DBAINTERVENTION();
-			}
-		});
-		btnNewButton.setBounds(101, 305, 84, 23);
+		btnNewButton.setBounds(118, 305, 67, 23);
 		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
 		frame.getContentPane().add(btnNewButton);
 		
 		
 		btnInserer = new JButton("Inserer");
-		btnInserer.setBounds(450, 305, 84, 23);
+		btnInserer.setBounds(450, 305, 69, 23);
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					frame.dispose();
-					InsererClient fInsererClient= new InsererClient();
+
+					Class.forName("oracle.jdbc.driver.OracleDriver");
+					connection=DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
+					stmt=connection.createStatement();
+					rs=stmt.executeQuery("SELECT * FROM CLIENT");
+					table.setModel(DbUtils.resultSetToTableModel(rs));
+						
 					
 					}
 				catch (Exception E) {
@@ -106,15 +105,5 @@ public class Client {
 		});
 		btnInserer.setFont(new Font("Arial", Font.PLAIN, 12));
 		frame.getContentPane().add(btnInserer);
-		try {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		connection=DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
-		stmt=connection.createStatement();
-		rs=stmt.executeQuery("SELECT * FROM CLIENT");
-		table.setModel(DbUtils.resultSetToTableModel(rs));}
-		catch(Exception E) {
-			E.printStackTrace();
-		}
 	}
-
 }
