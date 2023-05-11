@@ -67,7 +67,7 @@ public class InsererClient {
 	private void initialize() {
 		frmNouveauClient = new JFrame();
 		frmNouveauClient.setTitle("Nouveau client");
-		frmNouveauClient.setBounds(100, 100, 329, 490);
+		frmNouveauClient.setBounds(100, 100, 304, 490);
 		frmNouveauClient.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNouveauClient.getContentPane().setLayout(null);
 		frmNouveauClient.setVisible(true);

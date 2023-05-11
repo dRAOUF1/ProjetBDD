@@ -64,7 +64,7 @@ public class Employe {
 		frame.setVisible(true);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Client");
+		JLabel lblNewLabel = new JLabel("Employé");
 		lblNewLabel.setBounds(7, 16, 626, 18);
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 15));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -79,24 +79,25 @@ public class Employe {
 		table.setFont(new Font("Arial", Font.PLAIN, 12));
 		
 		btnNewButton = new JButton("Retour");
-		btnNewButton.setBounds(118, 305, 67, 23);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				DBAINTERVENTION fDbaintervention=new DBAINTERVENTION();
+			}
+		});
+		btnNewButton.setBounds(101, 305, 84, 23);
 		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
 		frame.getContentPane().add(btnNewButton);
 		
 		
 		btnInserer = new JButton("Inserer");
-		btnInserer.setBounds(450, 305, 69, 23);
+		btnInserer.setBounds(450, 305, 84, 23);
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-
-					Class.forName("oracle.jdbc.driver.OracleDriver");
-					connection=DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
-					stmt=connection.createStatement();
-					rs=stmt.executeQuery("SELECT * FROM CLIENT");
-					table.setModel(DbUtils.resultSetToTableModel(rs));
-						
+					frame.dispose();
+					InsererEmploye fInsererEmploye= new InsererEmploye();
 					
 					}
 				catch (Exception E) {
@@ -105,5 +106,15 @@ public class Employe {
 		});
 		btnInserer.setFont(new Font("Arial", Font.PLAIN, 12));
 		frame.getContentPane().add(btnInserer);
+		try {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		connection=DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
+		stmt=connection.createStatement();
+		rs=stmt.executeQuery("SELECT * FROM EMPLOYE");
+		table.setModel(DbUtils.resultSetToTableModel(rs));}
+		catch(Exception E) {
+			E.printStackTrace();
+		}
 	}
+
 }

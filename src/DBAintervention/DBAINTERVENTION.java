@@ -82,6 +82,8 @@ public class DBAINTERVENTION {
 		JButton btnEmploye = new JButton("Employe");
 		btnEmploye.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				Employe fEmploye=new Employe();
 			}
 		});
 		btnEmploye.setFont(new Font("Arial", Font.BOLD, 14));
