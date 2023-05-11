@@ -20,7 +20,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import net.miginfocom.swing.MigLayout;
 
-public class Client {
+public class Intervenant {
 
 	private JFrame frame;
 	private JTable table;
@@ -38,7 +38,7 @@ public class Client {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Client window = new Client();
+					Intervenant window = new Intervenant();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +50,7 @@ public class Client {
 	/**
 	 * Create the application.
 	 */
-	public Client() {
+	public Intervenant() {
 		initialize();
 	}
 
@@ -64,7 +64,7 @@ public class Client {
 		frame.setVisible(true);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Client");
+		JLabel lblNewLabel = new JLabel("Intervenants");
 		lblNewLabel.setBounds(7, 16, 626, 18);
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 15));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -97,7 +97,7 @@ public class Client {
 				
 				try {
 					frame.dispose();
-					InsererClient fInsererClient= new InsererClient();
+					InsererIntervenant fInsererIntervenant= new InsererIntervenant();
 					
 					}
 				catch (Exception E) {
@@ -110,7 +110,7 @@ public class Client {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		connection=DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
 		stmt=connection.createStatement();
-		rs=stmt.executeQuery("SELECT * FROM CLIENT");
+		rs=stmt.executeQuery("SELECT * FROM Intervenants");
 		table.setModel(DbUtils.resultSetToTableModel(rs));}
 		catch(Exception E) {
 			E.printStackTrace();

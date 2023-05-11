@@ -19,8 +19,12 @@ import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import net.miginfocom.swing.MigLayout;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormSpecs;
+import com.jgoodies.forms.layout.RowSpec;
 
-public class Client {
+public class Interventions {
 
 	private JFrame frame;
 	private JTable table;
@@ -38,7 +42,7 @@ public class Client {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Client window = new Client();
+					Interventions window = new Interventions();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +54,7 @@ public class Client {
 	/**
 	 * Create the application.
 	 */
-	public Client() {
+	public Interventions() {
 		initialize();
 	}
 
@@ -64,14 +68,14 @@ public class Client {
 		frame.setVisible(true);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Client");
-		lblNewLabel.setBounds(7, 16, 626, 18);
+		JLabel lblNewLabel = new JLabel("Interventions");
+		lblNewLabel.setBounds(5, 12, 626, 18);
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 15));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(lblNewLabel);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(7, 46, 626, 255);
+		scrollPane.setBounds(5, 42, 626, 255);
 		frame.getContentPane().add(scrollPane);
 		
 		table = new JTable();
@@ -79,25 +83,25 @@ public class Client {
 		table.setFont(new Font("Arial", Font.PLAIN, 12));
 		
 		btnNewButton = new JButton("Retour");
+		btnNewButton.setBounds(111, 305, 84, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				DBAINTERVENTION fDbaintervention=new DBAINTERVENTION();
 			}
 		});
-		btnNewButton.setBounds(101, 305, 84, 23);
 		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
 		frame.getContentPane().add(btnNewButton);
 		
 		
 		btnInserer = new JButton("Inserer");
-		btnInserer.setBounds(450, 305, 84, 23);
+		btnInserer.setBounds(443, 305, 84, 23);
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
 					frame.dispose();
-					InsererClient fInsererClient= new InsererClient();
+					InsererInterventions fInsererInterventions= new InsererInterventions();
 					
 					}
 				catch (Exception E) {
@@ -110,7 +114,7 @@ public class Client {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		connection=DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
 		stmt=connection.createStatement();
-		rs=stmt.executeQuery("SELECT * FROM CLIENT");
+		rs=stmt.executeQuery("SELECT * FROM Interventions");
 		table.setModel(DbUtils.resultSetToTableModel(rs));}
 		catch(Exception E) {
 			E.printStackTrace();
