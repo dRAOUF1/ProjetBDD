@@ -11,6 +11,8 @@ import net.proteanit.sql.DbUtils;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -169,6 +171,7 @@ public class InsererClient {
 		fax.setBounds(52, 368, 180, 17);
 		frmNouveauClient.getContentPane().add(fax);
 		
+		
 		JButton btnInserer = new JButton("Inserer");
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -190,6 +193,16 @@ public class InsererClient {
 				
 			}
 		});
+		
+		frmNouveauClient.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		frmNouveauClient.addWindowListener(new WindowAdapter() {
+		    @Override
+		    public void windowClosing(WindowEvent e) {
+		        frmNouveauClient.dispose(); // ferme la fenêtre principale sans quitter l'application
+		        Client fClient=new Client();
+		    }
+		});
+		
 		btnInserer.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnInserer.setBounds(98, 405, 84, 23);
 		frmNouveauClient.getContentPane().add(btnInserer);
