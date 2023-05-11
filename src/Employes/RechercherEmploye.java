@@ -26,7 +26,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 
-public class EmployesDBA {
+public class RechercherEmploye {
 
 	private JFrame frame;
 	private JTable tableEmploye;
@@ -47,7 +47,7 @@ public class EmployesDBA {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EmployesDBA window = new EmployesDBA();
+					RechercherEmploye window = new RechercherEmploye();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -59,7 +59,7 @@ public class EmployesDBA {
 	/**
 	 * Create the application.
 	 */
-	public EmployesDBA() {
+	public RechercherEmploye() {
 		initialize();
 	}
 
