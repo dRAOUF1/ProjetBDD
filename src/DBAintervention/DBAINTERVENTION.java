@@ -59,7 +59,7 @@ public class DBAINTERVENTION {
 			}
 		});
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton.setBounds(41, 41, 122, 29);
+		btnNewButton.setBounds(38, 28, 122, 29);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnMarque = new JButton("Marque");
@@ -70,7 +70,7 @@ public class DBAINTERVENTION {
 			}
 		});
 		btnMarque.setFont(new Font("Arial", Font.BOLD, 14));
-		btnMarque.setBounds(41, 90, 122, 29);
+		btnMarque.setBounds(38, 77, 122, 29);
 		frame.getContentPane().add(btnMarque);
 		
 		JButton btnVehicule = new JButton("Vehicule");
@@ -81,7 +81,7 @@ public class DBAINTERVENTION {
 			}
 		});
 		btnVehicule.setFont(new Font("Arial", Font.BOLD, 14));
-		btnVehicule.setBounds(41, 141, 122, 29);
+		btnVehicule.setBounds(38, 128, 122, 29);
 		frame.getContentPane().add(btnVehicule);
 		
 		JButton btnEmploye = new JButton("Employe");
@@ -92,7 +92,7 @@ public class DBAINTERVENTION {
 			}
 		});
 		btnEmploye.setFont(new Font("Arial", Font.BOLD, 14));
-		btnEmploye.setBounds(282, 41, 122, 29);
+		btnEmploye.setBounds(279, 28, 122, 29);
 		frame.getContentPane().add(btnEmploye);
 		
 		JButton btnModele = new JButton("Modele");
@@ -103,7 +103,7 @@ public class DBAINTERVENTION {
 			}
 		});
 		btnModele.setFont(new Font("Arial", Font.BOLD, 14));
-		btnModele.setBounds(282, 90, 122, 29);
+		btnModele.setBounds(279, 77, 122, 29);
 		frame.getContentPane().add(btnModele);
 		
 		JButton btnInterventions = new JButton("Interventions");
@@ -114,7 +114,7 @@ public class DBAINTERVENTION {
 			}
 		});
 		btnInterventions.setFont(new Font("Arial", Font.BOLD, 14));
-		btnInterventions.setBounds(282, 141, 122, 29);
+		btnInterventions.setBounds(279, 128, 122, 29);
 		frame.getContentPane().add(btnInterventions);
 		
 		JButton btnIntervenants = new JButton("Intervenants");
@@ -125,7 +125,7 @@ public class DBAINTERVENTION {
 			}
 		});
 		btnIntervenants.setFont(new Font("Arial", Font.BOLD, 14));
-		btnIntervenants.setBounds(282, 197, 122, 29);
+		btnIntervenants.setBounds(279, 184, 122, 29);
 		frame.getContentPane().add(btnIntervenants);
 		
 		JButton btnSeDeconnecter = new JButton("Se deconnecter");
@@ -135,8 +135,17 @@ public class DBAINTERVENTION {
 				Application fApplication = new Application();
 			}
 		});
-		btnSeDeconnecter.setFont(new Font("Arial", Font.BOLD, 14));
-		btnSeDeconnecter.setBounds(41, 197, 122, 29);
+		btnSeDeconnecter.setFont(new Font("Arial", Font.PLAIN, 11));
+		btnSeDeconnecter.setBounds(8, 234, 107, 21);
 		frame.getContentPane().add(btnSeDeconnecter);
+		
+		JButton btnRequtes = new JButton("Requêtes ");
+		btnRequtes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnRequtes.setFont(new Font("Arial", Font.BOLD, 14));
+		btnRequtes.setBounds(38, 184, 122, 29);
+		frame.getContentPane().add(btnRequtes);
 	}
 }

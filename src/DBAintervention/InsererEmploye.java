@@ -134,10 +134,7 @@ public class InsererEmploye {
 					stmt=connection.createStatement();
 					rs=stmt.executeQuery("INSERT INTO EMPLOYE VALUES("+num.getText()+",'"+nom.getText()+"','"+prenom.getText()+"','"+categorie.getSelectedItem().toString()+"',"+salaire.getText()+")");
 					rs=stmt.executeQuery("commit");
-					
-					
-					rs=stmt.executeQuery("INSERT INTO EMPLOYE VALUES(23322,'','','Assistant',0)");
-     
+					     
 					frmNouveauClient.dispose();
 					Employe fEmploye=new Employe();
 					
