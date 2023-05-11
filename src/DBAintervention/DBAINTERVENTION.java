@@ -1,5 +1,6 @@
 package DBAintervention;
 import java.awt.EventQueue;
+import app.Application;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -64,6 +65,8 @@ public class DBAINTERVENTION {
 		JButton btnMarque = new JButton("Marque");
 		btnMarque.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				Marque fMarque= new Marque();
 			}
 		});
 		btnMarque.setFont(new Font("Arial", Font.BOLD, 14));
@@ -73,6 +76,8 @@ public class DBAINTERVENTION {
 		JButton btnVehicule = new JButton("Vehicule");
 		btnVehicule.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				Vehicule fVehicule=new Vehicule();
 			}
 		});
 		btnVehicule.setFont(new Font("Arial", Font.BOLD, 14));
@@ -91,16 +96,34 @@ public class DBAINTERVENTION {
 		frame.getContentPane().add(btnEmploye);
 		
 		JButton btnModele = new JButton("Modele");
+		btnModele.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				Modele fModele=new Modele();
+			}
+		});
 		btnModele.setFont(new Font("Arial", Font.BOLD, 14));
 		btnModele.setBounds(282, 90, 122, 29);
 		frame.getContentPane().add(btnModele);
 		
 		JButton btnInterventions = new JButton("Interventions");
+		btnInterventions.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				Interventions fInterventions = new Interventions();
+			}
+		});
 		btnInterventions.setFont(new Font("Arial", Font.BOLD, 14));
 		btnInterventions.setBounds(282, 141, 122, 29);
 		frame.getContentPane().add(btnInterventions);
 		
 		JButton btnIntervenants = new JButton("Intervenants");
+		btnIntervenants.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				Intervenant fIntervenant=new Intervenant();
+			}
+		});
 		btnIntervenants.setFont(new Font("Arial", Font.BOLD, 14));
 		btnIntervenants.setBounds(282, 197, 122, 29);
 		frame.getContentPane().add(btnIntervenants);
@@ -108,6 +131,8 @@ public class DBAINTERVENTION {
 		JButton btnSeDeconnecter = new JButton("Se deconnecter");
 		btnSeDeconnecter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				Application fApplication = new Application();
 			}
 		});
 		btnSeDeconnecter.setFont(new Font("Arial", Font.BOLD, 14));

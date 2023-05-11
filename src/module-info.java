@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author yas
- *
- */
-module ProjetBDD {
-}

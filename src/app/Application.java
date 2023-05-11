@@ -1,3 +1,4 @@
+package app;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -26,6 +27,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class Application {
 
@@ -33,12 +35,12 @@ public class Application {
 	private JTextField Username;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
-	private JTextField Password;
 	
 	
 	private Connection connection=null;
 	private Statement stmt=null;
 	private ResultSet rs=null;
+	private JPasswordField Password;
 
 	/**
 	 * Launch the application.
@@ -73,6 +75,7 @@ public class Application {
 		frmSeConnecter.setBounds(100, 100, 335, 330);
 		frmSeConnecter.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSeConnecter.getContentPane().setLayout(null);
+		frmSeConnecter.setVisible(true);
 		
 		JLabel lblNewLabel = new JLabel("Se Connecter");
 		lblNewLabel.setBounds(90, 56, 139, 26);
@@ -98,12 +101,6 @@ public class Application {
 		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblNewLabel_2.setBounds(70, 157, 111, 11);
 		frmSeConnecter.getContentPane().add(lblNewLabel_2);
-		
-		Password = new JTextField();
-		Password.setToolTipText("");
-		Password.setColumns(10);
-		Password.setBounds(68, 171, 180, 17);
-		frmSeConnecter.getContentPane().add(Password);
 		
 		JButton btnNewButton = new JButton("Se connecter");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -134,5 +131,9 @@ public class Application {
 		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnNewButton.setBounds(104, 204, 104, 25);
 		frmSeConnecter.getContentPane().add(btnNewButton);
+		
+		Password = new JPasswordField();
+		Password.setBounds(68, 171, 180, 17);
+		frmSeConnecter.getContentPane().add(Password);
 	}
 }
