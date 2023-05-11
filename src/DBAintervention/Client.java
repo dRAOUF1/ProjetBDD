@@ -62,17 +62,15 @@ public class Client {
 		frame.setBounds(100, 100, 654, 404);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		frame.getContentPane().setLayout(null);
+		frame.getContentPane().setLayout(new MigLayout("", "[178px][265px,grow][183px]", "[18px][271.00px,grow][23px]"));
 		
 		JLabel lblNewLabel = new JLabel("Client");
-		lblNewLabel.setBounds(7, 16, 626, 18);
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 15));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		frame.getContentPane().add(lblNewLabel);
+		frame.getContentPane().add(lblNewLabel, "cell 0 0 3 1,growx,aligny top");
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(7, 46, 626, 255);
-		frame.getContentPane().add(scrollPane);
+		frame.getContentPane().add(scrollPane, "cell 0 1 3 1,grow");
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
@@ -85,13 +83,11 @@ public class Client {
 				DBAINTERVENTION fDbaintervention=new DBAINTERVENTION();
 			}
 		});
-		btnNewButton.setBounds(101, 305, 84, 23);
 		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
-		frame.getContentPane().add(btnNewButton);
+		frame.getContentPane().add(btnNewButton, "cell 0 2,alignx right,aligny top");
 		
 		
 		btnInserer = new JButton("Inserer");
-		btnInserer.setBounds(450, 305, 84, 23);
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -105,7 +101,7 @@ public class Client {
 			}
 		});
 		btnInserer.setFont(new Font("Arial", Font.PLAIN, 12));
-		frame.getContentPane().add(btnInserer);
+		frame.getContentPane().add(btnInserer, "cell 2 2,alignx left,aligny top");
 		try {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		connection=DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
