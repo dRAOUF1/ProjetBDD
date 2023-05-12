@@ -7,21 +7,25 @@ import net.miginfocom.swing.MigLayout;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JSplitPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
+import javax.swing.plaf.basic.BasicScrollBarUI;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -29,6 +33,7 @@ import javax.swing.JLabel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.security.PublicKey;
@@ -38,8 +43,16 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import com.jgoodies.forms.layout.*;
+
+import component.ModernButton;
+import component.ModernComboBox;
+import component.ModernTextField;
+import component.MyJTable;
+
 import javax.swing.JLayeredPane;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 
 public class DBAINTERVENTION {
 
@@ -50,7 +63,7 @@ public class DBAINTERVENTION {
 	private JTextField num;
 	private JScrollPane scrollPane;
 	JLayeredPane layeredPane;
-	private JButton btnClient;
+	private ModernButton btnClient;
 
 	private JPanel client;
 	private JPanel Employe;
@@ -89,101 +102,124 @@ public class DBAINTERVENTION {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(195, 214, 245));
+		frame.setBackground(new Color(195, 214, 245));
 		frame.setBounds(100, 100, 763, 397);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new MigLayout("", "[grow]", "[grow]"));
 
 		JSplitPane splitPane = new JSplitPane();
+		splitPane.setBackground(new Color(195, 214, 245));
 		frame.getContentPane().add(splitPane, "cell 0 0,grow");
+		splitPane.setDividerSize(1);
 
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(0xC3D6F5));
 		splitPane.setLeftComponent(panel);
-		panel.setLayout(new FormLayout(new ColumnSpec[] { FormSpecs.RELATED_GAP_COLSPEC, ColumnSpec.decode("79px"), },
-				new RowSpec[] { RowSpec.decode("28dlu"), RowSpec.decode("19px"), FormSpecs.RELATED_GAP_ROWSPEC,
-						RowSpec.decode("max(12dlu;default)"), FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC,
-						FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC,
-						FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC,
-						FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC,
-						FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC, RowSpec.decode("default:grow"), }));
+		panel.setLayout(new FormLayout(new ColumnSpec[] {
+				FormSpecs.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("108px"),
+				FormSpecs.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("5px"),},
+			new RowSpec[] {
+				RowSpec.decode("28dlu"),
+				RowSpec.decode("21px"),
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("21px"),
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("21px"),
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("21px"),
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("21px"),
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("21px"),
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("21px"),
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("21px"),
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("default:grow"),}));
 
-		JButton btnNewButton;
-		btnClient = new JButton("Clients");
+		ModernButton btnNewButton;
+		btnClient = new ModernButton("Clients");
 		btnClient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changerPannel(client);
 			}
 		});
 		btnClient.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel.add(btnClient, "2, 2, left, top");
+		panel.add(btnClient, "2, 2, fill, fill");
 
-		JButton btnEmploye = new JButton("Employés");
+		ModernButton btnEmploye = new ModernButton("Employés");
 		btnEmploye.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changerPannel(Employe);
 			}
 		});
 		btnEmploye.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel.add(btnEmploye, "2, 4, left, top");
+		panel.add(btnEmploye, "2, 4, fill, fill");
 
-		JButton btnMarque = new JButton("Marques");
+		ModernButton btnMarque = new ModernButton("Marques");
 		btnMarque.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changerPannel(marque);
 			}
 		});
 		btnMarque.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel.add(btnMarque, "2, 6, left, top");
+		panel.add(btnMarque, "2, 6, fill, top");
 
-		JButton btnModele = new JButton("Modèles");
+		ModernButton btnModele = new ModernButton("Modèles");
 		btnModele.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changerPannel(modele);
 			}
 		});
 		btnModele.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel.add(btnModele, "2, 8");
+		panel.add(btnModele, "2, 8, fill, default");
 
-		JButton btnVehicule = new JButton("Véhicules");
+		ModernButton btnVehicule = new ModernButton("Véhicules");
 		btnVehicule.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changerPannel(vehicule);
 			}
 		});
 		btnVehicule.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel.add(btnVehicule, "2, 10");
+		panel.add(btnVehicule, "2, 10, fill, default");
 
-		JButton btnIntervenant = new JButton("Intervenants");
+		ModernButton btnIntervenant = new ModernButton("Intervenants");
 		btnIntervenant.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changerPannel(intervenant);
 			}
 		});
 		btnIntervenant.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel.add(btnIntervenant, "2, 12");
+		panel.add(btnIntervenant, "2, 12, fill, default");
 
-		JButton btnIntervention = new JButton("Interventions");
+		ModernButton btnIntervention = new ModernButton("Interventions");
 		btnIntervention.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changerPannel(intervention);
 			}
 		});
 		btnIntervention.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel.add(btnIntervention, "2, 14");
+		panel.add(btnIntervention, "2, 14, fill, default");
 
-		JButton btnRequete = new JButton("Requêtes");
+		ModernButton btnRequete = new ModernButton("Requêtes");
 		btnRequete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				changerPannel(requete);
 			}
 		});
 		btnRequete.setFont(new Font("Arial", Font.PLAIN, 12));
-		panel.add(btnRequete, "2, 16");
+		panel.add(btnRequete, "2, 16, fill, default");
 
 		layeredPane = new JLayeredPane();
 		splitPane.setRightComponent(layeredPane);
 		layeredPane.setLayout(new CardLayout(0, 0));
 
 		client = new JPanel();
+		client.setBackground(new Color(0xC3D6F5));
 		layeredPane.add(client, "name_1394139862364500");
 		client.setLayout(new MigLayout("", "[178px][265px,grow][183px]", "[18px][271.00px,grow][23px]"));
 
@@ -193,13 +229,15 @@ public class DBAINTERVENTION {
 		client.add(lblNewLabel, "cell 0 0 3 1,growx,aligny top");
 
 		scrollPane = new JScrollPane();
+		JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
+		verticalScrollBar.setPreferredSize(new Dimension(0, 0));
+		
 		client.add(scrollPane, "cell 0 1 3 1,grow");
 
-		final JTable tableClient = new JTable();
+		final MyJTable tableClient = new MyJTable();
 		scrollPane.setViewportView(tableClient);
-		tableClient.setFont(new Font("Arial", Font.PLAIN, 12));
 
-		JButton btnInserer = new JButton("Inserer");
+		ModernButton btnInserer = new ModernButton("Inserer");
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -212,7 +250,7 @@ public class DBAINTERVENTION {
 			}
 		});
 
-		JButton btnRefreshClient = new JButton("Actualisé ");
+		ModernButton btnRefreshClient = new ModernButton("Actualisé ");
 		btnRefreshClient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -239,6 +277,7 @@ public class DBAINTERVENTION {
 		}
 
 		Employe = new JPanel();
+		Employe.setBackground(new Color(0xC3D6F5));
 		layeredPane.add(Employe, "name_1393584470435300");
 		Employe.setLayout(new MigLayout("", "[178px][265px,grow][183px]", "[18px][255px,grow][23px]"));
 
@@ -250,11 +289,11 @@ public class DBAINTERVENTION {
 		scrollPane = new JScrollPane();
 		Employe.add(scrollPane, "cell 0 1 3 1,grow");
 
-		final JTable tableEmploye = new JTable();
+		final MyJTable tableEmploye = new MyJTable();
 		scrollPane.setViewportView(tableEmploye);
 		tableEmploye.setFont(new Font("Arial", Font.PLAIN, 12));
 
-		btnInserer = new JButton("Inserer");
+		btnInserer = new ModernButton("Inserer");
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -267,7 +306,7 @@ public class DBAINTERVENTION {
 			}
 		});
 
-		JButton btnRefreshEmploye = new JButton("Actualisé ");
+		ModernButton btnRefreshEmploye = new ModernButton("Actualisé ");
 		btnRefreshEmploye.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -295,6 +334,7 @@ public class DBAINTERVENTION {
 		}
 
 		marque = new JPanel();
+		marque.setBackground(new Color(0xC3D6F5));
 		layeredPane.add(marque, "name_1393635257920800");
 		marque.setLayout(new MigLayout("", "[178px][265px,grow][183px]", "[18px][255px,grow][23px]"));
 
@@ -307,14 +347,14 @@ public class DBAINTERVENTION {
 		scrollPane = new JScrollPane();
 		marque.add(scrollPane, "cell 0 1 3 1,grow");
 
-		final JTable tableMarque = new JTable();
+		final MyJTable tableMarque = new MyJTable();
 		scrollPane.setViewportView(tableMarque);
 		tableMarque.setFont(new Font("Arial", Font.PLAIN, 12));
 		tableMarque.setModel(DbUtils.resultSetToTableModel(rs));
 		tableMarque.setFont(new Font("Arial", Font.PLAIN, 12));
 		tableMarque.setModel(DbUtils.resultSetToTableModel(rs));
 		
-		JButton btnRefreshMarque = new JButton("Actualisé ");
+		ModernButton btnRefreshMarque = new ModernButton("Actualisé ");
 		btnRefreshMarque.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -330,7 +370,7 @@ public class DBAINTERVENTION {
 		btnRefreshMarque.setFont(new Font("Arial", Font.PLAIN, 12));
 		marque.add(btnRefreshMarque, "cell 0 2,alignx right,aligny center");
 
-		btnInserer = new JButton("Inserer");
+		btnInserer = new ModernButton("Inserer");
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -355,10 +395,11 @@ public class DBAINTERVENTION {
 		}
 
 		modele = new JPanel();
+		modele.setBackground(new Color(0xC3D6F5));
 		layeredPane.add(modele, "name_1393637987395500");
 		modele.setLayout(new MigLayout("", "[178px][265px,grow][183px]", "[18px][255px,grow][23px]"));
 
-		JButton btnRefreshModele = new JButton("Actualisé ");
+		ModernButton btnRefreshModele = new ModernButton("Actualisé ");
 
 		JLabel lblNewLabelModele = new JLabel("Modèle ");
 		lblNewLabelModele.setBounds(7, 16, 626, 18);
@@ -370,7 +411,7 @@ public class DBAINTERVENTION {
 		scrollPane.setBounds(7, 46, 626, 255);
 		modele.add(scrollPane, "cell 0 1 3 1,growx");
 
-		final JTable tableModele = new JTable();
+		final MyJTable tableModele = new MyJTable();
 		scrollPane.setViewportView(tableModele);
 		btnRefreshModele.setFont(new Font("Arial", Font.PLAIN, 12));
 		
@@ -388,7 +429,7 @@ public class DBAINTERVENTION {
 		
 		modele.add(btnRefreshModele, "cell 0 2,alignx right,aligny center");
 
-		btnInserer = new JButton("Inserer");
+		btnInserer = new ModernButton("Inserer");
 		btnInserer.setBounds(450, 305, 84, 23);
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -414,6 +455,7 @@ public class DBAINTERVENTION {
 		}
 
 		vehicule = new JPanel();
+		vehicule.setBackground(new Color(195, 214, 245));
 		layeredPane.add(vehicule, "name_1393640284669700");
 		vehicule.setLayout(new MigLayout("", "[178px][265px,grow][183px]", "[18px][255px,grow][23px]"));
 
@@ -427,12 +469,12 @@ public class DBAINTERVENTION {
 		scrollPane.setBounds(7, 46, 626, 255);
 		vehicule.add(scrollPane, "cell 0 1 3 1,growx");
 
-		final JTable tableVehicule = new JTable();
+		final MyJTable tableVehicule = new MyJTable();
 		scrollPane.setViewportView(tableVehicule);
 		tableVehicule.setFont(new Font("Arial", Font.PLAIN, 12));
 		tableVehicule.setModel(DbUtils.resultSetToTableModel(rs));
 		
-		JButton btnRefreshVehicule = new JButton("Actualisé ");
+		ModernButton btnRefreshVehicule = new ModernButton("Actualisé ");
 		btnRefreshVehicule.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -448,7 +490,7 @@ public class DBAINTERVENTION {
 		btnRefreshVehicule.setFont(new Font("Arial", Font.PLAIN, 12));
 		vehicule.add(btnRefreshVehicule, "cell 0 2,alignx right,aligny center");
 
-		btnInserer = new JButton("Inserer");
+		btnInserer = new ModernButton("Inserer");
 		btnInserer.setBounds(450, 305, 84, 23);
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -474,6 +516,7 @@ public class DBAINTERVENTION {
 		}
 
 		intervenant = new JPanel();
+		intervenant.setBackground(new Color(0xC3D6F5));
 		layeredPane.add(intervenant, "name_1393738788754100");
 		intervenant.setLayout(new MigLayout("", "[178px][265px,grow][183px]", "[18px][255px,grow][23px]"));
 
@@ -489,12 +532,12 @@ public class DBAINTERVENTION {
 		scrollPane.setBounds(7, 46, 626, 255);
 		intervenant.add(scrollPane, "cell 0 1 3 1,growx");
 
-		final JTable tableIntervenant = new JTable();
+		final MyJTable tableIntervenant = new MyJTable();
 		scrollPane.setViewportView(tableIntervenant);
 		tableIntervenant.setFont(new Font("Arial", Font.PLAIN, 12));
 		tableIntervenant.setModel(DbUtils.resultSetToTableModel(rs));
 		
-		JButton btnRefreshIntervenant = new JButton("Actualisé ");
+		ModernButton btnRefreshIntervenant = new ModernButton("Actualisé ");
 		btnRefreshIntervenant.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -510,7 +553,7 @@ public class DBAINTERVENTION {
 		btnRefreshIntervenant.setFont(new Font("Arial", Font.PLAIN, 12));
 		intervenant.add(btnRefreshIntervenant, "cell 0 2,alignx right,aligny center");
 
-		btnInserer = new JButton("Inserer");
+		btnInserer = new ModernButton("Inserer");
 		btnInserer.setBounds(450, 305, 84, 23);
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -536,6 +579,7 @@ public class DBAINTERVENTION {
 		}
 
 		intervention = new JPanel();
+		intervention.setBackground(new Color(0xC3D6F5));
 		layeredPane.add(intervention, "name_1393742143025600");
 		intervention.setLayout(new MigLayout("", "[178px][265px,grow][183px]", "[18px][255px,grow][23px]"));
 
@@ -549,12 +593,12 @@ public class DBAINTERVENTION {
 		scrollPane.setBounds(5, 42, 626, 255);
 		intervention.add(scrollPane, "cell 0 1 3 1,growx");
 
-		final JTable tableInterventions = new JTable();
+		final MyJTable tableInterventions = new MyJTable();
 		scrollPane.setViewportView(tableInterventions);
 		tableInterventions.setFont(new Font("Arial", Font.PLAIN, 12));
 		tableInterventions.setModel(DbUtils.resultSetToTableModel(rs));
 		
-		JButton btnRefreshInterventions = new JButton("Actualisé ");
+		ModernButton btnRefreshInterventions = new ModernButton("Actualisé ");
 		btnRefreshInterventions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -569,7 +613,7 @@ public class DBAINTERVENTION {
 		btnRefreshInterventions.setFont(new Font("Arial", Font.PLAIN, 12));
 		intervention.add(btnRefreshInterventions, "cell 0 2,alignx right,aligny center");
 
-		btnInserer = new JButton("Inserer");
+		btnInserer = new ModernButton("Inserer");
 		btnInserer.setBounds(443, 305, 84, 23);
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -594,12 +638,13 @@ public class DBAINTERVENTION {
 		}
 
 		requete = new JPanel();
+		requete.setBackground(new Color(0xC3D6F5));
 		layeredPane.add(requete, "name_1392722723516900");
 		requete.setLayout(
 				new MigLayout("", "[57.00:n,grow][10.00:n][73.00px:82.00px][38px][3px][7px][48px][316px][10.00,grow][]",
 						"[][20px][18px][18px][17px][19px][136px]"));
 
-		final JComboBox comboBox = new JComboBox();
+		final JComboBox comboBox = new ModernComboBox();
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -614,46 +659,46 @@ public class DBAINTERVENTION {
 				"• Afficher les employés dont le nom commence par un T",
 				"• Afficher la liste des interventions faites par un employé",
 				"• Déterminer la liste des interventions faites dans une période donnée" }));
-		requete.add(comboBox, "cell 2 1 6 1,alignx left,aligny top");
+		requete.add(comboBox, "cell 2 1 6 1,alignx left,aligny center");
 
 		final JLabel lblDateDeDebut = new JLabel("Date de debut :");
 		lblDateDeDebut.setFont(new Font("Arial", Font.PLAIN, 12));
 		requete.add(lblDateDeDebut, "cell 2 2,alignx left,aligny center");
 
-		final JComboBox jourd = new JComboBox();
+		final JComboBox jourd = new ModernComboBox();
 		jourd.setFont(new Font("Arial", Font.PLAIN, 11));
 		jourd.setModel(new DefaultComboBoxModel(new String[] { "Jour", "1", "2", "3", "4", "5", "6", "7", "8", "9",
 				"10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26",
 				"27", "28", "29", "30", "31" }));
 		requete.add(jourd, "cell 3 2 3 1,growx,aligny center");
 
-		final JComboBox moisd = new JComboBox();
+		final JComboBox moisd = new ModernComboBox();
 		moisd.setModel(new DefaultComboBoxModel(
 				new String[] { "Mois", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 		moisd.setFont(new Font("Arial", Font.PLAIN, 11));
 		requete.add(moisd, "cell 6 2,growx,aligny center");
 
-		final JComboBox anneed = new JComboBox();
+		final JComboBox anneed = new ModernComboBox();
 		anneed.setModel(new DefaultComboBoxModel(new String[] { "Année ", "1995", "1996", "1997", "1998", "1999",
 				"2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012",
 				"2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023" }));
 		anneed.setFont(new Font("Arial", Font.PLAIN, 11));
 		requete.add(anneed, "cell 7 2,alignx left,aligny center");
 
-		final JComboBox anneef = new JComboBox();
+		final JComboBox anneef = new ModernComboBox();
 		anneef.setModel(new DefaultComboBoxModel(new String[] { "Année ", "1995", "1996", "1997", "1998", "1999",
 				"2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012",
 				"2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023" }));
 		anneef.setFont(new Font("Arial", Font.PLAIN, 11));
 		requete.add(anneef, "cell 7 3,alignx left,aligny center");
 
-		final JComboBox moisf = new JComboBox();
+		final JComboBox moisf = new ModernComboBox();
 		moisf.setModel(new DefaultComboBoxModel(
 				new String[] { "Mois", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 		moisf.setFont(new Font("Arial", Font.PLAIN, 11));
 		requete.add(moisf, "cell 6 3,growx,aligny center");
 
-		final JComboBox jourf = new JComboBox();
+		final JComboBox jourf = new ModernComboBox();
 		jourf.setModel(new DefaultComboBoxModel(new String[] { "Jour", "1", "2", "3", "4", "5", "6", "7", "8", "9",
 				"10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26",
 				"27", "28", "29", "30", "31" }));
@@ -668,18 +713,18 @@ public class DBAINTERVENTION {
 		numText.setFont(new Font("Arial", Font.PLAIN, 12));
 		requete.add(numText, "cell 2 4 3 1,alignx left,aligny center");
 
-		final JTextField num = new JTextField();
+		final JTextField num = new ModernTextField();
 		requete.add(num, "cell 5 4 3 1,alignx left,aligny top");
 		num.setColumns(10);
 
-		final JButton Exec = new JButton("Exécuter ");
+		final ModernButton Exec = new ModernButton("Exécuter ");
 
 		requete.add(Exec, "cell 6 5 2 1,alignx left,aligny top");
 
 		final JScrollPane scrollPane = new JScrollPane();
 		requete.add(scrollPane, "cell 1 6 8 1,grow");
 
-		final JTable table = new JTable();
+		final MyJTable table = new MyJTable();
 		scrollPane.setViewportView(table);
 
 		scrollPane.setVisible(false);
