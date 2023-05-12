@@ -110,7 +110,6 @@ public class InsererModele {
 					rs=stmt.executeQuery("commit");
      
 					frmNouveauModele.dispose();
-					Modele fModele=new Modele();
 					
 				}catch (Exception E) {
 					E.printStackTrace();
@@ -125,7 +124,6 @@ public class InsererModele {
 		    @Override
 		    public void windowClosing(WindowEvent e) {
 		        frmNouveauModele.dispose(); // ferme la fenêtre principale sans quitter l'application
-		        Modele fModele=new Modele();
 		    }
 		});
 		

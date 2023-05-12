@@ -110,7 +110,6 @@ public class InsererMarque {
 					rs=stmt.executeQuery("commit");
      
 					frmNouvelleMarque.dispose();
-					Marque fMarque=new Marque();
 					
 				}catch (Exception E) {
 					E.printStackTrace();
@@ -125,7 +124,6 @@ public class InsererMarque {
 		    @Override
 		    public void windowClosing(WindowEvent e) {
 		        frmNouvelleMarque.dispose(); // ferme la fenêtre principale sans quitter l'application
-		        Client fClient=new Client();
 		    }
 		});
 		

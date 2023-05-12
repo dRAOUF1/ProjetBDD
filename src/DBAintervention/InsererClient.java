@@ -184,7 +184,6 @@ public class InsererClient {
 					rs=stmt.executeQuery("commit");
      
 					frmNouveauClient.dispose();
-					Client fClient=new Client();
 					
 				}catch (Exception E) {
 					E.printStackTrace();
@@ -199,7 +198,6 @@ public class InsererClient {
 		    @Override
 		    public void windowClosing(WindowEvent e) {
 		        frmNouveauClient.dispose(); // ferme la fenêtre principale sans quitter l'application
-		        Client fClient=new Client();
 		    }
 		});
 		

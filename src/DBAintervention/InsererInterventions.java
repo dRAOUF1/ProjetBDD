@@ -148,7 +148,6 @@ public class InsererInterventions {
 					rs=stmt.executeQuery("commit");
      
 					frmNouveauClient.dispose();
-					Interventions fiInterventions=new Interventions();
 					
 				}catch (Exception E) {
 					E.printStackTrace();
@@ -163,7 +162,6 @@ public class InsererInterventions {
 		    @Override
 		    public void windowClosing(WindowEvent e) {
 		        frmNouveauClient.dispose(); // ferme la fenêtre principale sans quitter l'application
-		        Interventions fiInterventions=new Interventions();
 		    }
 		});
 		

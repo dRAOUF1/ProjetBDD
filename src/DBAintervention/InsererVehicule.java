@@ -132,7 +132,6 @@ public class InsererVehicule {
 					rs=stmt.executeQuery("commit");
      
 					frmNouveauClient.dispose();
-					Vehicule fVehicule=new Vehicule();
 					
 					
 				}catch (Exception E) {
@@ -148,7 +147,6 @@ public class InsererVehicule {
 		    @Override
 		    public void windowClosing(WindowEvent e) {
 		        frmNouveauClient.dispose(); // ferme la fenêtre principale sans quitter l'application
-		        Vehicule fVehicule=new Vehicule();
 		    }
 		});
 		
