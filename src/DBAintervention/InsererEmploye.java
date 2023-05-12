@@ -135,9 +135,7 @@ public class InsererEmploye {
 					rs=stmt.executeQuery("INSERT INTO EMPLOYE VALUES("+num.getText()+",'"+nom.getText()+"','"+prenom.getText()+"','"+categorie.getSelectedItem().toString()+"',"+salaire.getText()+")");
 					rs=stmt.executeQuery("commit");
 					     
-					frmNouveauClient.dispose();
-					Employe fEmploye=new Employe();
-					
+					frmNouveauClient.dispose();					
 					
 				}catch (Exception E) {
 					E.printStackTrace();
@@ -152,7 +150,6 @@ public class InsererEmploye {
 		    @Override
 		    public void windowClosing(WindowEvent e) {
 		        frmNouveauClient.dispose(); // ferme la fenêtre principale sans quitter l'application
-		        Employe fEmploye=new Employe();
 		    }
 		});
 		

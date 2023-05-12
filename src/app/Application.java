@@ -5,9 +5,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
 import java.awt.BorderLayout;
+
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.CardLayout;
@@ -19,6 +24,8 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
 import DBAintervention.DBAINTERVENTION;
+import component.ModernButton;
+import component.ModernTextField;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -70,6 +77,7 @@ public class Application {
 	 */
 	private void initialize() {
 		frmSeConnecter = new JFrame();
+		frmSeConnecter.getContentPane().setBackground(new Color(195, 214, 245));
 		frmSeConnecter.setTitle("Se Connecter");
 		frmSeConnecter.setResizable(false);
 		frmSeConnecter.setBounds(100, 100, 335, 330);
@@ -86,7 +94,7 @@ public class Application {
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
 		frmSeConnecter.getContentPane().add(lblNewLabel);
 		
-		Username = new JTextField();
+		Username = new ModernTextField();
 		Username.setToolTipText("");
 		Username.setBounds(68, 116, 180, 17);
 		frmSeConnecter.getContentPane().add(Username);
@@ -102,7 +110,7 @@ public class Application {
 		lblNewLabel_2.setBounds(70, 157, 111, 11);
 		frmSeConnecter.getContentPane().add(lblNewLabel_2);
 		
-		JButton btnNewButton = new JButton("Se connecter");
+		JButton btnNewButton = new ModernButton("Se connecter");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -133,6 +141,14 @@ public class Application {
 		frmSeConnecter.getContentPane().add(btnNewButton);
 		
 		Password = new JPasswordField();
+		Password.setPreferredSize(new Dimension(200, 30));
+		Password.setFont(new Font("Arial", Font.PLAIN, 12));
+        Border line = BorderFactory.createLineBorder(Color.GRAY, 1);
+        Border empty = BorderFactory.createEmptyBorder(0, 5, 0, 5);
+        Password.setBorder(BorderFactory.createCompoundBorder(line, empty));
+        Password.setBackground(Color.WHITE);
+        Password.setForeground(Color.BLACK);
+        Password.setCaretColor(Color.BLACK);
 		Password.setBounds(68, 171, 180, 17);
 		frmSeConnecter.getContentPane().add(Password);
 	}

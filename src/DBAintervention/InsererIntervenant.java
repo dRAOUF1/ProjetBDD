@@ -127,7 +127,6 @@ public class InsererIntervenant {
 					rs=stmt.executeQuery("commit");
      
 					frmNouveauClient.dispose();
-					Intervenant fIntervenant=new Intervenant();
 					
 					
 				}catch (Exception E) {
@@ -143,7 +142,6 @@ public class InsererIntervenant {
 		    @Override
 		    public void windowClosing(WindowEvent e) {
 		        frmNouveauClient.dispose(); // ferme la fenêtre principale sans quitter l'application
-		        Intervenant fIntervenant=new Intervenant();
 		    }
 		});
 		
