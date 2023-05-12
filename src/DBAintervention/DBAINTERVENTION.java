@@ -48,13 +48,12 @@ public class DBAINTERVENTION {
 	private Statement stmt = null;
 	private ResultSet rs = null;
 	private JTextField num;
-	private JTable table;
 	private JScrollPane scrollPane;
 	JLayeredPane layeredPane;
 	private JButton btnClient;
-	
+
 	private JPanel client;
-	private JPanel Employe; 
+	private JPanel Employe;
 	private JPanel marque;
 	private JPanel modele;
 	private JPanel vehicule;
@@ -99,28 +98,13 @@ public class DBAINTERVENTION {
 
 		JPanel panel = new JPanel();
 		splitPane.setLeftComponent(panel);
-		panel.setLayout(new FormLayout(new ColumnSpec[] {
-				FormSpecs.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("79px"),},
-			new RowSpec[] {
-				RowSpec.decode("28dlu"),
-				RowSpec.decode("19px"),
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("max(12dlu;default)"),
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("default:grow"),}));
+		panel.setLayout(new FormLayout(new ColumnSpec[] { FormSpecs.RELATED_GAP_COLSPEC, ColumnSpec.decode("79px"), },
+				new RowSpec[] { RowSpec.decode("28dlu"), RowSpec.decode("19px"), FormSpecs.RELATED_GAP_ROWSPEC,
+						RowSpec.decode("max(12dlu;default)"), FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC,
+						FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC,
+						FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC,
+						FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC,
+						FormSpecs.DEFAULT_ROWSPEC, FormSpecs.RELATED_GAP_ROWSPEC, RowSpec.decode("default:grow"), }));
 
 		JButton btnNewButton;
 		btnClient = new JButton("Clients");
@@ -149,7 +133,7 @@ public class DBAINTERVENTION {
 		});
 		btnMarque.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel.add(btnMarque, "2, 6, left, top");
-		
+
 		JButton btnModele = new JButton("Modèles");
 		btnModele.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -158,7 +142,7 @@ public class DBAINTERVENTION {
 		});
 		btnModele.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel.add(btnModele, "2, 8");
-		
+
 		JButton btnVehicule = new JButton("Véhicules");
 		btnVehicule.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -167,7 +151,7 @@ public class DBAINTERVENTION {
 		});
 		btnVehicule.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel.add(btnVehicule, "2, 10");
-		
+
 		JButton btnIntervenant = new JButton("Intervenants");
 		btnIntervenant.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -176,7 +160,7 @@ public class DBAINTERVENTION {
 		});
 		btnIntervenant.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel.add(btnIntervenant, "2, 12");
-		
+
 		JButton btnIntervention = new JButton("Interventions");
 		btnIntervention.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -185,7 +169,7 @@ public class DBAINTERVENTION {
 		});
 		btnIntervention.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel.add(btnIntervention, "2, 14");
-		
+
 		JButton btnRequete = new JButton("Requêtes");
 		btnRequete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -211,9 +195,9 @@ public class DBAINTERVENTION {
 		scrollPane = new JScrollPane();
 		client.add(scrollPane, "cell 0 1 3 1,grow");
 
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		table.setFont(new Font("Arial", Font.PLAIN, 12));
+		final JTable tableClient = new JTable();
+		scrollPane.setViewportView(tableClient);
+		tableClient.setFont(new Font("Arial", Font.PLAIN, 12));
 
 		JButton btnInserer = new JButton("Inserer");
 		btnInserer.addActionListener(new ActionListener() {
@@ -227,14 +211,29 @@ public class DBAINTERVENTION {
 				}
 			}
 		});
+
+		JButton btnRefreshClient = new JButton("Actualisé ");
+		btnRefreshClient.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					rs = stmt.executeQuery("SELECT * FROM client");
+					tableClient.setModel(DbUtils.resultSetToTableModel(rs));
+
+				} catch (Exception E) {
+					E.printStackTrace();
+				}
+			}
+		});
+		btnRefreshClient.setFont(new Font("Arial", Font.PLAIN, 12));
+		client.add(btnRefreshClient, "cell 0 2,alignx right,aligny center");
 		btnInserer.setFont(new Font("Arial", Font.PLAIN, 12));
-		client.add(btnInserer, "cell 2 2,alignx left,aligny top");
+		client.add(btnInserer, "cell 2 2,alignx left,aligny center");
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			connection = DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
 			stmt = connection.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM CLIENT");
-			table.setModel(DbUtils.resultSetToTableModel(rs));
+			tableClient.setModel(DbUtils.resultSetToTableModel(rs));
 		} catch (Exception E) {
 			E.printStackTrace();
 		}
@@ -251,9 +250,9 @@ public class DBAINTERVENTION {
 		scrollPane = new JScrollPane();
 		Employe.add(scrollPane, "cell 0 1 3 1,grow");
 
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		table.setFont(new Font("Arial", Font.PLAIN, 12));
+		final JTable tableEmploye = new JTable();
+		scrollPane.setViewportView(tableEmploye);
+		tableEmploye.setFont(new Font("Arial", Font.PLAIN, 12));
 
 		btnInserer = new JButton("Inserer");
 		btnInserer.addActionListener(new ActionListener() {
@@ -267,6 +266,22 @@ public class DBAINTERVENTION {
 				}
 			}
 		});
+
+		JButton btnRefreshEmploye = new JButton("Actualisé ");
+		btnRefreshEmploye.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					rs = stmt.executeQuery("SELECT * FROM Employe");
+					tableEmploye.setModel(DbUtils.resultSetToTableModel(rs));
+
+				} catch (Exception E) {
+					E.printStackTrace();
+				}
+			}
+
+		});
+		btnRefreshEmploye.setFont(new Font("Arial", Font.PLAIN, 12));
+		Employe.add(btnRefreshEmploye, "cell 0 2,alignx right,aligny center");
 		btnInserer.setFont(new Font("Arial", Font.PLAIN, 12));
 		Employe.add(btnInserer, "cell 2 2,alignx left,aligny top");
 		try {
@@ -274,238 +289,309 @@ public class DBAINTERVENTION {
 			connection = DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
 			stmt = connection.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM EMPLOYE");
-			table.setModel(DbUtils.resultSetToTableModel(rs));
+			tableEmploye.setModel(DbUtils.resultSetToTableModel(rs));
 		} catch (Exception E) {
 			E.printStackTrace();
 		}
 
 		marque = new JPanel();
 		layeredPane.add(marque, "name_1393635257920800");
-marque.setLayout(null);
-		
+		marque.setLayout(new MigLayout("", "[178px][265px,grow][183px]", "[18px][255px,grow][23px]"));
+
 		JLabel lblNewLabelMarque = new JLabel("Marque");
-		lblNewLabelMarque.setBounds(7, 16, 626, 18);
 		lblNewLabelMarque.setFont(new Font("Arial", Font.BOLD, 15));
 		lblNewLabelMarque.setHorizontalAlignment(SwingConstants.CENTER);
-		marque.add(lblNewLabelMarque);
-		
+		marque.add(lblNewLabelMarque, "cell 1 0,growx,aligny top");
+
+
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(7, 46, 626, 255);
-		marque.add(scrollPane);
+		marque.add(scrollPane, "cell 0 1 3 1,grow");
+
+		final JTable tableMarque = new JTable();
+		scrollPane.setViewportView(tableMarque);
+		tableMarque.setFont(new Font("Arial", Font.PLAIN, 12));
+		tableMarque.setModel(DbUtils.resultSetToTableModel(rs));
+		tableMarque.setFont(new Font("Arial", Font.PLAIN, 12));
+		tableMarque.setModel(DbUtils.resultSetToTableModel(rs));
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		table.setFont(new Font("Arial", Font.PLAIN, 12));
-		
-		
+		JButton btnRefreshMarque = new JButton("Actualisé ");
+		btnRefreshMarque.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					rs = stmt.executeQuery("SELECT * FROM marque");
+					tableMarque.setModel(DbUtils.resultSetToTableModel(rs));
+					
+				} catch (Exception E) {
+					E.printStackTrace();
+				}
+			}
+			
+		});
+		btnRefreshMarque.setFont(new Font("Arial", Font.PLAIN, 12));
+		marque.add(btnRefreshMarque, "cell 0 2,alignx right,aligny center");
+
 		btnInserer = new JButton("Inserer");
-		btnInserer.setBounds(450, 305, 84, 23);
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				try {
-					InsererMarque fInsererMarque= new InsererMarque();
-					
-					}
-				catch (Exception E) {
-				E.printStackTrace();}
+					InsererMarque fInsererMarque = new InsererMarque();
+
+				} catch (Exception E) {
+					E.printStackTrace();
+				}
 			}
 		});
 		btnInserer.setFont(new Font("Arial", Font.PLAIN, 12));
-		marque.add(btnInserer);
+		marque.add(btnInserer, "cell 2 2,alignx left,aligny center");
 		try {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		connection=DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
-		stmt=connection.createStatement();
-		rs=stmt.executeQuery("SELECT * FROM Marque");
-		table.setModel(DbUtils.resultSetToTableModel(rs));}
-		catch(Exception E) {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			connection = DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
+			stmt = connection.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM Marque");
+			tableMarque.setModel(DbUtils.resultSetToTableModel(rs));
+		} catch (Exception E) {
 			E.printStackTrace();
 		}
 
-
-
 		modele = new JPanel();
 		layeredPane.add(modele, "name_1393637987395500");
-modele.setLayout(null);
-		
+		modele.setLayout(new MigLayout("", "[178px][265px,grow][183px]", "[18px][255px,grow][23px]"));
+
+		JButton btnRefreshModele = new JButton("Actualisé ");
+
 		JLabel lblNewLabelModele = new JLabel("Modèle ");
 		lblNewLabelModele.setBounds(7, 16, 626, 18);
 		lblNewLabelModele.setFont(new Font("Arial", Font.BOLD, 15));
 		lblNewLabelModele.setHorizontalAlignment(SwingConstants.CENTER);
-		modele.add(lblNewLabelModele);
-		
+		modele.add(lblNewLabelModele, "cell 1 0,growx");
+
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(7, 46, 626, 255);
-		modele.add(scrollPane);
+		modele.add(scrollPane, "cell 0 1 3 1,growx");
+
+		final JTable tableModele = new JTable();
+		scrollPane.setViewportView(tableModele);
+		btnRefreshModele.setFont(new Font("Arial", Font.PLAIN, 12));
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		table.setFont(new Font("Arial", Font.PLAIN, 12));
+		btnRefreshModele.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					rs = stmt.executeQuery("SELECT * FROM modele");
+					tableModele.setModel(DbUtils.resultSetToTableModel(rs));
+					
+				} catch (Exception E) {
+					E.printStackTrace();
+				}
+			}
+		});
 		
-		
+		modele.add(btnRefreshModele, "cell 0 2,alignx right,aligny center");
+
 		btnInserer = new JButton("Inserer");
 		btnInserer.setBounds(450, 305, 84, 23);
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				try {
-					InsererModele fInsererModele=new InsererModele();
-					
-					}
-				catch (Exception E) {
-				E.printStackTrace();}
+					InsererModele fInsererModele = new InsererModele();
+
+				} catch (Exception E) {
+					E.printStackTrace();
+				}
 			}
 		});
 		btnInserer.setFont(new Font("Arial", Font.PLAIN, 12));
-		modele.add(btnInserer);
+		modele.add(btnInserer, "cell 2 2");
 		try {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		connection=DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
-		stmt=connection.createStatement();
-		rs=stmt.executeQuery("SELECT * FROM modele");
-		table.setModel(DbUtils.resultSetToTableModel(rs));}
-		catch(Exception E) {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			connection = DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
+			stmt = connection.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM modele");
+			tableModele.setModel(DbUtils.resultSetToTableModel(rs));
+		} catch (Exception E) {
 			E.printStackTrace();
 		}
 
 		vehicule = new JPanel();
 		layeredPane.add(vehicule, "name_1393640284669700");
-vehicule.setLayout(null);
-		
-		JLabel lblNewLabelVehicule = new JLabel("Véhicule ");
+		vehicule.setLayout(new MigLayout("", "[178px][265px,grow][183px]", "[18px][255px,grow][23px]"));
+
+				JLabel lblNewLabelVehicule = new JLabel("Véhicule ");
 		lblNewLabelVehicule.setBounds(7, 16, 626, 18);
 		lblNewLabelVehicule.setFont(new Font("Arial", Font.BOLD, 15));
 		lblNewLabelVehicule.setHorizontalAlignment(SwingConstants.CENTER);
-		vehicule.add(lblNewLabelVehicule);
-		
+		vehicule.add(lblNewLabelVehicule, "cell 1 0,growx");
+
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(7, 46, 626, 255);
-		vehicule.add(scrollPane);
+		vehicule.add(scrollPane, "cell 0 1 3 1,growx");
+
+		final JTable tableVehicule = new JTable();
+		scrollPane.setViewportView(tableVehicule);
+		tableVehicule.setFont(new Font("Arial", Font.PLAIN, 12));
+		tableVehicule.setModel(DbUtils.resultSetToTableModel(rs));
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		table.setFont(new Font("Arial", Font.PLAIN, 12));
+		JButton btnRefreshVehicule = new JButton("Actualisé ");
+		btnRefreshVehicule.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					rs = stmt.executeQuery("SELECT * FROM vehicule");
+					tableVehicule.setModel(DbUtils.resultSetToTableModel(rs));
+
+				} catch (Exception E) {
+					E.printStackTrace();
+				}
+			}
+		});
 		
-		
+		btnRefreshVehicule.setFont(new Font("Arial", Font.PLAIN, 12));
+		vehicule.add(btnRefreshVehicule, "cell 0 2,alignx right,aligny center");
+
 		btnInserer = new JButton("Inserer");
 		btnInserer.setBounds(450, 305, 84, 23);
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				try {
-					InsererVehicule fInsererVehicule= new InsererVehicule();
-					
-					}
-				catch (Exception E) {
-				E.printStackTrace();}
+					InsererVehicule fInsererVehicule = new InsererVehicule();
+
+				} catch (Exception E) {
+					E.printStackTrace();
+				}
 			}
 		});
 		btnInserer.setFont(new Font("Arial", Font.PLAIN, 12));
-		vehicule.add(btnInserer);
+		vehicule.add(btnInserer, "cell 2 2");
 		try {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		connection=DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
-		stmt=connection.createStatement();
-		rs=stmt.executeQuery("SELECT * FROM vehicule");
-		table.setModel(DbUtils.resultSetToTableModel(rs));}
-		catch(Exception E) {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			connection = DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
+			stmt = connection.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM vehicule");
+			tableVehicule.setModel(DbUtils.resultSetToTableModel(rs));
+		} catch (Exception E) {
 			E.printStackTrace();
 		}
 
-
-		
-
 		intervenant = new JPanel();
 		layeredPane.add(intervenant, "name_1393738788754100");
-intervenant.setLayout(null);
+		intervenant.setLayout(new MigLayout("", "[178px][265px,grow][183px]", "[18px][255px,grow][23px]"));
+
 		
+
 		JLabel lblNewLabel1Intervenant = new JLabel("Intervenants");
 		lblNewLabel1Intervenant.setBounds(7, 16, 626, 18);
 		lblNewLabel1Intervenant.setFont(new Font("Arial", Font.BOLD, 15));
 		lblNewLabel1Intervenant.setHorizontalAlignment(SwingConstants.CENTER);
-		intervenant.add(lblNewLabel1Intervenant);
-		
+		intervenant.add(lblNewLabel1Intervenant, "cell 1 0,growx");
+
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(7, 46, 626, 255);
-		intervenant.add(scrollPane);
+		intervenant.add(scrollPane, "cell 0 1 3 1,growx");
+
+		final JTable tableIntervenant = new JTable();
+		scrollPane.setViewportView(tableIntervenant);
+		tableIntervenant.setFont(new Font("Arial", Font.PLAIN, 12));
+		tableIntervenant.setModel(DbUtils.resultSetToTableModel(rs));
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		table.setFont(new Font("Arial", Font.PLAIN, 12));
+		JButton btnRefreshIntervenant = new JButton("Actualisé ");
+		btnRefreshIntervenant.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					rs = stmt.executeQuery("SELECT * FROM intervenants");
+					tableIntervenant.setModel(DbUtils.resultSetToTableModel(rs));
+
+				} catch (Exception E) {
+					E.printStackTrace();
+				}
+			}
+		});
 		
-		
+		btnRefreshIntervenant.setFont(new Font("Arial", Font.PLAIN, 12));
+		intervenant.add(btnRefreshIntervenant, "cell 0 2,alignx right,aligny center");
+
 		btnInserer = new JButton("Inserer");
 		btnInserer.setBounds(450, 305, 84, 23);
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				try {
-					InsererIntervenant fInsererIntervenant= new InsererIntervenant();
-					
-					}
-				catch (Exception E) {
-				E.printStackTrace();}
+					InsererIntervenant fInsererIntervenant = new InsererIntervenant();
+
+				} catch (Exception E) {
+					E.printStackTrace();
+				}
 			}
 		});
 		btnInserer.setFont(new Font("Arial", Font.PLAIN, 12));
-		intervenant.add(btnInserer);
+		intervenant.add(btnInserer, "cell 2 2");
 		try {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		connection=DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
-		stmt=connection.createStatement();
-		rs=stmt.executeQuery("SELECT * FROM Intervenants");
-		table.setModel(DbUtils.resultSetToTableModel(rs));}
-		catch(Exception E) {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			connection = DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
+			stmt = connection.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM Intervenants");
+			tableIntervenant.setModel(DbUtils.resultSetToTableModel(rs));
+		} catch (Exception E) {
 			E.printStackTrace();
 		}
 
-
-
 		intervention = new JPanel();
 		layeredPane.add(intervention, "name_1393742143025600");
-intervention.setLayout(null);
-		
+		intervention.setLayout(new MigLayout("", "[178px][265px,grow][183px]", "[18px][255px,grow][23px]"));
+
 		JLabel lblNewLabel1Intervention = new JLabel("Interventions");
 		lblNewLabel1Intervention.setBounds(5, 12, 626, 18);
 		lblNewLabel1Intervention.setFont(new Font("Arial", Font.BOLD, 15));
 		lblNewLabel1Intervention.setHorizontalAlignment(SwingConstants.CENTER);
-		intervention.add(lblNewLabel1Intervention);
-		
+		intervention.add(lblNewLabel1Intervention, "cell 1 0,growx");
+
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(5, 42, 626, 255);
-		intervention.add(scrollPane);
+		intervention.add(scrollPane, "cell 0 1 3 1,growx");
+
+		final JTable tableInterventions = new JTable();
+		scrollPane.setViewportView(tableInterventions);
+		tableInterventions.setFont(new Font("Arial", Font.PLAIN, 12));
+		tableInterventions.setModel(DbUtils.resultSetToTableModel(rs));
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		table.setFont(new Font("Arial", Font.PLAIN, 12));
-		
-		
+		JButton btnRefreshInterventions = new JButton("Actualisé ");
+		btnRefreshInterventions.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					rs = stmt.executeQuery("SELECT * FROM interventions");
+					tableInterventions.setModel(DbUtils.resultSetToTableModel(rs));
+
+				} catch (Exception E) {
+					E.printStackTrace();
+				}
+			}
+		});
+		btnRefreshInterventions.setFont(new Font("Arial", Font.PLAIN, 12));
+		intervention.add(btnRefreshInterventions, "cell 0 2,alignx right,aligny center");
+
 		btnInserer = new JButton("Inserer");
 		btnInserer.setBounds(443, 305, 84, 23);
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				try {
-					InsererInterventions fInsererInterventions= new InsererInterventions();
-					}
-				catch (Exception E) {
-				E.printStackTrace();}
+					InsererInterventions fInsererInterventions = new InsererInterventions();
+				} catch (Exception E) {
+					E.printStackTrace();
+				}
 			}
 		});
 		btnInserer.setFont(new Font("Arial", Font.PLAIN, 12));
-		intervention.add(btnInserer);
+		intervention.add(btnInserer, "cell 2 2");
 		try {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		connection=DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
-		stmt=connection.createStatement();
-		rs=stmt.executeQuery("SELECT * FROM Interventions");
-		table.setModel(DbUtils.resultSetToTableModel(rs));}
-		catch(Exception E) {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			connection = DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
+			stmt = connection.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM Interventions");
+			tableInterventions.setModel(DbUtils.resultSetToTableModel(rs));
+		} catch (Exception E) {
 			E.printStackTrace();
 		}
-
-
 
 		requete = new JPanel();
 		layeredPane.add(requete, "name_1392722723516900");
@@ -710,7 +796,7 @@ intervention.setLayout(null);
 						connection = DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
 						stmt = connection.createStatement();
 						rs = stmt.executeQuery("SELECT * FROM vehicule ");
-						table.setModel(DbUtils.resultSetToTableModel(rs));
+						tableVehicule.setModel(DbUtils.resultSetToTableModel(rs));
 					} catch (Exception E) {
 						E.printStackTrace();
 					}
@@ -948,12 +1034,11 @@ intervention.setLayout(null);
 
 		});
 	}
-	
+
 	public void changerPannel(JPanel p) {
 		layeredPane.removeAll();
 		layeredPane.add(p);
 		layeredPane.repaint();
 		layeredPane.revalidate();
 	}
-
 }
