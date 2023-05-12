@@ -114,33 +114,18 @@ public class DBAINTERVENTION {
 		frame.getContentPane().add(splitPane, "cell 0 0,grow");
 		splitPane.setDividerSize(1);
 
-		JPanel panel = new JPanel();
+		final JPanel panel = new JPanel();
 		panel.setBackground(new Color(0xC3D6F5));
 		splitPane.setLeftComponent(panel);
-		panel.setLayout(new FormLayout(new ColumnSpec[] {
-				FormSpecs.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("108px"),
-				FormSpecs.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("5px"),},
-			new RowSpec[] {
-				RowSpec.decode("28dlu"),
-				RowSpec.decode("21px"),
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("21px"),
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("21px"),
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("21px"),
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("21px"),
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("21px"),
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("21px"),
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("21px"),
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("default:grow"),}));
+		panel.setLayout(new FormLayout(
+				new ColumnSpec[] { FormSpecs.RELATED_GAP_COLSPEC, ColumnSpec.decode("108px"),
+						FormSpecs.RELATED_GAP_COLSPEC, ColumnSpec.decode("5px"), },
+				new RowSpec[] { RowSpec.decode("28dlu"), RowSpec.decode("21px"), FormSpecs.RELATED_GAP_ROWSPEC,
+						RowSpec.decode("21px"), FormSpecs.RELATED_GAP_ROWSPEC, RowSpec.decode("21px"),
+						FormSpecs.RELATED_GAP_ROWSPEC, RowSpec.decode("21px"), FormSpecs.RELATED_GAP_ROWSPEC,
+						RowSpec.decode("21px"), FormSpecs.RELATED_GAP_ROWSPEC, RowSpec.decode("21px"),
+						FormSpecs.RELATED_GAP_ROWSPEC, RowSpec.decode("21px"), FormSpecs.RELATED_GAP_ROWSPEC,
+						RowSpec.decode("21px"), FormSpecs.RELATED_GAP_ROWSPEC, RowSpec.decode("default:grow"), }));
 
 		ModernButton btnNewButton;
 		btnClient = new ModernButton("Clients");
@@ -232,7 +217,7 @@ public class DBAINTERVENTION {
 		scrollPane = new JScrollPane();
 		JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
 		verticalScrollBar.setPreferredSize(new Dimension(0, 0));
-		
+
 		client.add(scrollPane, "cell 0 1 3 1,grow");
 
 		final MyJTable tableClient = new MyJTable();
@@ -344,7 +329,6 @@ public class DBAINTERVENTION {
 		lblNewLabelMarque.setHorizontalAlignment(SwingConstants.CENTER);
 		marque.add(lblNewLabelMarque, "cell 1 0,growx,aligny top");
 
-
 		scrollPane = new JScrollPane();
 		marque.add(scrollPane, "cell 0 1 3 1,grow");
 
@@ -354,19 +338,19 @@ public class DBAINTERVENTION {
 		tableMarque.setModel(DbUtils.resultSetToTableModel(rs));
 		tableMarque.setFont(new Font("Arial", Font.PLAIN, 12));
 		tableMarque.setModel(DbUtils.resultSetToTableModel(rs));
-		
+
 		ModernButton btnRefreshMarque = new ModernButton("Actualisé ");
 		btnRefreshMarque.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					rs = stmt.executeQuery("SELECT * FROM marque");
 					tableMarque.setModel(DbUtils.resultSetToTableModel(rs));
-					
+
 				} catch (Exception E) {
 					E.printStackTrace();
 				}
 			}
-			
+
 		});
 		btnRefreshMarque.setFont(new Font("Arial", Font.PLAIN, 12));
 		marque.add(btnRefreshMarque, "cell 0 2,alignx right,aligny center");
@@ -415,19 +399,19 @@ public class DBAINTERVENTION {
 		final MyJTable tableModele = new MyJTable();
 		scrollPane.setViewportView(tableModele);
 		btnRefreshModele.setFont(new Font("Arial", Font.PLAIN, 12));
-		
+
 		btnRefreshModele.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					rs = stmt.executeQuery("SELECT * FROM modele");
 					tableModele.setModel(DbUtils.resultSetToTableModel(rs));
-					
+
 				} catch (Exception E) {
 					E.printStackTrace();
 				}
 			}
 		});
-		
+
 		modele.add(btnRefreshModele, "cell 0 2,alignx right,aligny center");
 
 		btnInserer = new ModernButton("Inserer");
@@ -460,7 +444,7 @@ public class DBAINTERVENTION {
 		layeredPane.add(vehicule, "name_1393640284669700");
 		vehicule.setLayout(new MigLayout("", "[178px][265px,grow][183px]", "[18px][255px,grow][23px]"));
 
-				JLabel lblNewLabelVehicule = new JLabel("Véhicule ");
+		JLabel lblNewLabelVehicule = new JLabel("Véhicule ");
 		lblNewLabelVehicule.setBounds(7, 16, 626, 18);
 		lblNewLabelVehicule.setFont(new Font("Arial", Font.BOLD, 15));
 		lblNewLabelVehicule.setHorizontalAlignment(SwingConstants.CENTER);
@@ -474,7 +458,7 @@ public class DBAINTERVENTION {
 		scrollPane.setViewportView(tableVehicule);
 		tableVehicule.setFont(new Font("Arial", Font.PLAIN, 12));
 		tableVehicule.setModel(DbUtils.resultSetToTableModel(rs));
-		
+
 		ModernButton btnRefreshVehicule = new ModernButton("Actualisé ");
 		btnRefreshVehicule.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -487,7 +471,7 @@ public class DBAINTERVENTION {
 				}
 			}
 		});
-		
+
 		btnRefreshVehicule.setFont(new Font("Arial", Font.PLAIN, 12));
 		vehicule.add(btnRefreshVehicule, "cell 0 2,alignx right,aligny center");
 
@@ -521,8 +505,6 @@ public class DBAINTERVENTION {
 		layeredPane.add(intervenant, "name_1393738788754100");
 		intervenant.setLayout(new MigLayout("", "[178px][265px,grow][183px]", "[18px][255px,grow][23px]"));
 
-		
-
 		JLabel lblNewLabel1Intervenant = new JLabel("Intervenants");
 		lblNewLabel1Intervenant.setBounds(7, 16, 626, 18);
 		lblNewLabel1Intervenant.setFont(new Font("Arial", Font.BOLD, 15));
@@ -537,7 +519,7 @@ public class DBAINTERVENTION {
 		scrollPane.setViewportView(tableIntervenant);
 		tableIntervenant.setFont(new Font("Arial", Font.PLAIN, 12));
 		tableIntervenant.setModel(DbUtils.resultSetToTableModel(rs));
-		
+
 		ModernButton btnRefreshIntervenant = new ModernButton("Actualisé ");
 		btnRefreshIntervenant.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -550,7 +532,7 @@ public class DBAINTERVENTION {
 				}
 			}
 		});
-		
+
 		btnRefreshIntervenant.setFont(new Font("Arial", Font.PLAIN, 12));
 		intervenant.add(btnRefreshIntervenant, "cell 0 2,alignx right,aligny center");
 
@@ -598,7 +580,7 @@ public class DBAINTERVENTION {
 		scrollPane.setViewportView(tableInterventions);
 		tableInterventions.setFont(new Font("Arial", Font.PLAIN, 12));
 		tableInterventions.setModel(DbUtils.resultSetToTableModel(rs));
-		
+
 		ModernButton btnRefreshInterventions = new ModernButton("Actualisé ");
 		btnRefreshInterventions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -642,8 +624,7 @@ public class DBAINTERVENTION {
 		requete.setBackground(new Color(0xC3D6F5));
 		layeredPane.add(requete, "name_1392722723516900");
 		requete.setLayout(
-				new MigLayout("", "[57.00:n,grow][10.00:n][73.00px:82.00px][38px][3px][7px][48px][316px][10.00,grow][]",
-						"[][20px][18px][18px][17px][19px][136px]"));
+				new MigLayout("", "[57.00:n,grow][10.00:n][73.00px:93.00px][38px,grow][3px][7px][48px,grow][316px][10.00,grow][]", "[][20px][18px][][18px][][17px][19px][136px]"));
 
 		final JComboBox comboBox = new ModernComboBox();
 		comboBox.addActionListener(new ActionListener() {
@@ -662,7 +643,7 @@ public class DBAINTERVENTION {
 				"• Déterminer la liste des interventions faites dans une période donnée" }));
 		requete.add(comboBox, "cell 2 1 6 1,alignx left,aligny center");
 
-		final JLabel lblDateDeDebut = new JLabel("Date de debut :");
+		final JLabel lblDateDeDebut = new JLabel("Date de début :");
 		lblDateDeDebut.setFont(new Font("Arial", Font.PLAIN, 12));
 		requete.add(lblDateDeDebut, "cell 2 2,alignx left,aligny center");
 
@@ -685,45 +666,73 @@ public class DBAINTERVENTION {
 				"2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023" }));
 		anneed.setFont(new Font("Arial", Font.PLAIN, 11));
 		requete.add(anneed, "cell 7 2,alignx left,aligny center");
+		
+		final JLabel lblHeureDeDebut = new JLabel("Heure de début :");
+		lblHeureDeDebut.setFont(new Font("Arial", Font.PLAIN, 12));
+		requete.add(lblHeureDeDebut, "cell 2 3,alignx left");
+		
+		final ModernComboBox heured = new ModernComboBox();
+		heured.setModel(new DefaultComboBoxModel(new String[] {"Heure", "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		heured.setFont(new Font("Arial", Font.PLAIN, 11));
+		requete.add(heured, "cell 3 3 3 1,growx");
+		
+		final ModernComboBox mind = new ModernComboBox();
+		mind.setModel(new DefaultComboBoxModel(new String[] {"Minute", "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"}));
+		mind.setFont(new Font("Arial", Font.PLAIN, 11));
+		requete.add(mind, "cell 6 3,growx");
 
 		final JComboBox anneef = new ModernComboBox();
 		anneef.setModel(new DefaultComboBoxModel(new String[] { "Année ", "1995", "1996", "1997", "1998", "1999",
 				"2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012",
 				"2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023" }));
 		anneef.setFont(new Font("Arial", Font.PLAIN, 11));
-		requete.add(anneef, "cell 7 3,alignx left,aligny center");
+		requete.add(anneef, "cell 7 4,alignx left,aligny center");
 
 		final JComboBox moisf = new ModernComboBox();
 		moisf.setModel(new DefaultComboBoxModel(
 				new String[] { "Mois", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 		moisf.setFont(new Font("Arial", Font.PLAIN, 11));
-		requete.add(moisf, "cell 6 3,growx,aligny center");
+		requete.add(moisf, "cell 6 4,growx,aligny center");
 
 		final JComboBox jourf = new ModernComboBox();
 		jourf.setModel(new DefaultComboBoxModel(new String[] { "Jour", "1", "2", "3", "4", "5", "6", "7", "8", "9",
 				"10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26",
 				"27", "28", "29", "30", "31" }));
 		jourf.setFont(new Font("Arial", Font.PLAIN, 11));
-		requete.add(jourf, "cell 3 3 3 1,growx,aligny center");
+		requete.add(jourf, "cell 3 4 3 1,growx,aligny center");
 
 		final JLabel lblDateDeFin = new JLabel("Date de fin:");
 		lblDateDeFin.setFont(new Font("Arial", Font.PLAIN, 12));
-		requete.add(lblDateDeFin, "cell 2 3,alignx left,aligny center");
+		requete.add(lblDateDeFin, "cell 2 4,alignx left,aligny center");
+		
+		final JLabel lblHeureDeFin = new JLabel("Heure de fin :");
+		lblHeureDeFin.setFont(new Font("Arial", Font.PLAIN, 12));
+		requete.add(lblHeureDeFin, "cell 2 5,alignx left");
+		
+		final ModernComboBox heuref = new ModernComboBox();
+		heuref.setModel(new DefaultComboBoxModel(new String[] {"Heure", "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		heuref.setFont(new Font("Arial", Font.PLAIN, 11));
+		requete.add(heuref, "cell 3 5 3 1,growx");
+		
+		final ModernComboBox minf = new ModernComboBox();
+		minf.setModel(new DefaultComboBoxModel(new String[] {"Minute", "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"}));
+		minf.setFont(new Font("Arial", Font.PLAIN, 11));
+		requete.add(minf, "cell 6 5,growx");
 
 		final JLabel numText = new JLabel("Numéro de l'intervention :");
 		numText.setFont(new Font("Arial", Font.PLAIN, 12));
-		requete.add(numText, "cell 2 4 3 1,alignx left,aligny center");
+		requete.add(numText, "cell 2 6 3 1,alignx left,aligny center");
 
 		final JTextField num = new ModernTextField();
-		requete.add(num, "cell 5 4 3 1,alignx left,aligny top");
+		requete.add(num, "cell 5 6 3 1,alignx left,aligny top");
 		num.setColumns(10);
 
 		final ModernButton Exec = new ModernButton("Exécuter ");
 
-		requete.add(Exec, "cell 6 5 2 1,alignx left,aligny top");
+		requete.add(Exec, "cell 6 7 2 1,alignx left,aligny top");
 
 		final JScrollPane scrollPane = new JScrollPane();
-		requete.add(scrollPane, "cell 1 6 8 1,grow");
+		requete.add(scrollPane, "cell 1 8 7 1,grow");
 
 		final MyJTable table = new MyJTable();
 		scrollPane.setViewportView(table);
@@ -734,8 +743,7 @@ public class DBAINTERVENTION {
 			public void actionPerformed(ActionEvent e) {
 				switch (comboBox.getSelectedItem().toString()) {
 				case "• Changer la date et l’heure de l’intervention": {
-					scrollPane.setVisible(false);
-					requete.add(scrollPane, "cell 1 6 8 1,grow");
+					requete.remove(scrollPane);
 					requete.add(lblDateDeDebut, "cell 2 2,alignx left,aligny center");
 					lblDateDeDebut.setVisible(true);
 					requete.add(jourd, "cell 3 2 3 1,growx,aligny center");
@@ -744,20 +752,31 @@ public class DBAINTERVENTION {
 					moisd.setVisible(true);
 					requete.add(anneed, "cell 7 2,alignx left,aligny center");
 					anneed.setVisible(true);
-					requete.add(anneef, "cell 7 3,alignx left,aligny center");
+					requete.add(anneef, "cell 7 4,alignx left,aligny center");
 					anneef.setVisible(true);
-					requete.add(moisf, "cell 6 3,growx,aligny center");
+					requete.add(moisf, "cell 6 4,growx,aligny center");
 					moisf.setVisible(true);
-					requete.add(jourf, "cell 3 3 3 1,growx,aligny center");
+					requete.add(jourf, "cell 3 4 3 1,growx,aligny center");
 					jourf.setVisible(true);
-					requete.add(lblDateDeFin, "cell 2 3,alignx left,aligny center");
+					requete.add(lblDateDeFin, "cell 2 4,alignx left,aligny center");
 					lblDateDeFin.setVisible(true);
-					requete.add(numText, "cell 2 4 3 1,alignx left,aligny center");
+					requete.add(numText, "cell 2 6 3 1,alignx left,aligny center");
 					numText.setVisible(true);
 					numText.setText("Numéro de l'intervention :");
-					requete.add(num, "cell 5 4 3 1,alignx left,aligny top");
+					requete.add(num, "cell 5 6 3 1,alignx left,aligny top");
 					num.setVisible(true);
-					requete.add(Exec, "cell 6 5 2 1,alignx left,aligny top");
+					requete.add(heured, "cell 3 3 3 1,growx");
+					heured.setVisible(true);
+					requete.add(mind, "cell 6 3,growx");
+					mind.setVisible(true);
+					requete.add(heuref, "cell 3 5 3 1,growx");
+					heuref.setVisible(true);
+					requete.add(minf, "cell 6 5,growx");
+					requete.add(lblHeureDeDebut, "cell 2 3,alignx left");
+					requete.add(lblHeureDeFin, "cell 2 5,alignx left");
+					minf.setVisible(true);					
+					requete.add(Exec, "cell 6 7 2 1,alignx left,aligny top");
+					
 					Exec.setVisible(true);
 
 					Exec.addActionListener(new ActionListener() {
@@ -767,16 +786,22 @@ public class DBAINTERVENTION {
 								connection = DriverManager
 										.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
 								stmt = connection.createStatement();
-								String datedebString = jourd.getSelectedItem().toString() + "/"
-										+ moisd.getSelectedItem().toString() + "/"
+								String datedebString = jourd.getSelectedItem().toString() + "-"
+										+ moisd.getSelectedItem().toString() + "-"
 										+ anneed.getSelectedItem().toString();
-								String datefinString = jourf.getSelectedItem().toString() + "/"
-										+ moisf.getSelectedItem().toString() + "/"
+								String datefinString = jourf.getSelectedItem().toString() + "-"
+										+ moisf.getSelectedItem().toString() + "-"
 										+ anneef.getSelectedItem().toString();
 								String sqlString = String.format(
-										"Update interventions set DATEDEBINTERV=%s and DATEFININTERV=%s where NUMINTERVENTION=%s",
-										datedebString, datefinString, num.getText());
+										"Update interventions set DATEDEBINTERV=TO_DATE('%s %s:%s','RRRR-MM-DD HH24:MI') where NUMINTERVENTION=%s",
+										datedebString,heured.getSelectedItem().toString(),mind.getSelectedItem().toString(), num.getText());
 								rs = stmt.executeQuery(sqlString);
+
+								sqlString = String.format(
+										"Update interventions set DATEDEBINTERV=TO_DATE('%s %s:%s','RRRR-MM-DD HH24:MI') where NUMINTERVENTION=%s",
+										datedebString,heuref.getSelectedItem().toString(),minf.getSelectedItem().toString(), num.getText());;
+								rs = stmt.executeQuery(sqlString);
+
 								System.out.print(sqlString);
 
 							} catch (Exception E) {
@@ -800,6 +825,12 @@ public class DBAINTERVENTION {
 					numText.setVisible(false);
 					num.setVisible(false);
 					Exec.setVisible(false);
+					requete.remove(heured);
+					requete.remove(mind);
+					requete.remove(heuref);
+					requete.remove(minf);
+					requete.remove(lblHeureDeFin);
+					requete.remove(lblHeureDeDebut);
 					requete.add(Exec, "cell 9 5 1 1,alignx left,aligny top");
 					requete.add(num, "cell 9 5 1 1,alignx left,aligny top");
 					requete.add(numText, "cell 9 5 1 1,alignx left,aligny center");
@@ -822,6 +853,7 @@ public class DBAINTERVENTION {
 					scrollPane.setVisible(true);
 					lblDateDeDebut.setVisible(false);
 					requete.add(lblDateDeDebut, "cell 9 6,alignx left,aligny center");
+					requete.add(scrollPane, "cell 2 2 6 4,grow ");
 					jourd.setVisible(false);
 					moisd.setVisible(false);
 					anneed.setVisible(false);
@@ -832,17 +864,23 @@ public class DBAINTERVENTION {
 					numText.setVisible(false);
 					num.setVisible(false);
 					Exec.setVisible(false);
+					requete.remove(heured);
+					requete.remove(mind);
+					requete.remove(heuref);
+					requete.remove(minf);
+					requete.remove(lblHeureDeFin);
+					requete.remove(lblHeureDeDebut);
 					requete.add(Exec, "cell 9 5 1 1,alignx left,aligny top");
 					requete.add(num, "cell 9 5 1 1,alignx left,aligny top");
 					requete.add(numText, "cell 9 5 1 1,alignx left,aligny center");
-					requete.add(scrollPane, "cell 2 2 6 4,grow ");
 
 					try {
 						Class.forName("oracle.jdbc.driver.OracleDriver");
 						connection = DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
 						stmt = connection.createStatement();
 						rs = stmt.executeQuery("SELECT * FROM vehicule ");
-						tableVehicule.setModel(DbUtils.resultSetToTableModel(rs));
+						table.setModel(DbUtils.resultSetToTableModel(rs));
+						System.out.print(1);
 					} catch (Exception E) {
 						E.printStackTrace();
 					}
@@ -858,15 +896,21 @@ public class DBAINTERVENTION {
 					anneef.setVisible(false);
 					moisf.setVisible(false);
 					jourf.setVisible(false);
+					requete.remove(heured);
+					requete.remove(mind);
+					requete.remove(heuref);
+					requete.remove(minf);
+					requete.remove(lblHeureDeFin);
+					requete.remove(lblHeureDeDebut);
 					lblDateDeFin.setVisible(false);
 					numText.setVisible(true);
 					numText.setText("Numéro de l'intervention :");
-					requete.add(numText, "cell 2 2 3 1,alignx left,aligny center");
+					requete.add(numText, "cell 2 2 1 1,alignx left,aligny center");
 					num.setVisible(true);
-					requete.add(num, "cell 5 2 3 1,alignx left,aligny top");
+					requete.add(num, "cell 5 2 2 1,growx,aligny top");
 					Exec.setVisible(true);
 					requete.add(Exec, "cell 6 3 2 1,alignx left,aligny top");
-					requete.add(scrollPane, "cell 2 4 6 4,grow ");
+					requete.add(scrollPane, "cell 1 4 8 4,grow ");
 					DefaultTableModel model = new DefaultTableModel();
 					table.setModel(model);
 
@@ -902,6 +946,12 @@ public class DBAINTERVENTION {
 					numText.setVisible(false);
 					num.setVisible(false);
 					Exec.setVisible(false);
+					requete.remove(heured);
+					requete.remove(mind);
+					requete.remove(heuref);
+					requete.remove(minf);
+					requete.remove(lblHeureDeFin);
+					requete.remove(lblHeureDeDebut);
 					requete.add(Exec, "cell 9 5 1 1,alignx left,aligny top");
 					requete.add(num, "cell 9 5 1 1,alignx left,aligny top");
 					requete.add(numText, "cell 9 5 1 1,alignx left,aligny center");
@@ -933,6 +983,12 @@ public class DBAINTERVENTION {
 					numText.setVisible(false);
 					num.setVisible(false);
 					Exec.setVisible(false);
+					requete.remove(heured);
+					requete.remove(mind);
+					requete.remove(heuref);
+					requete.remove(minf);
+					requete.remove(lblHeureDeFin);
+					requete.remove(lblHeureDeDebut);
 					requete.add(Exec, "cell 9 5 1 1,alignx left,aligny top");
 					requete.add(num, "cell 9 5 1 1,alignx left,aligny top");
 					requete.add(numText, "cell 9 5 1 1,alignx left,aligny center");
@@ -964,6 +1020,12 @@ public class DBAINTERVENTION {
 					numText.setVisible(false);
 					num.setVisible(false);
 					Exec.setVisible(false);
+					requete.remove(heured);
+					requete.remove(mind);
+					requete.remove(heuref);
+					requete.remove(minf);
+					requete.remove(lblHeureDeFin);
+					requete.remove(lblHeureDeDebut);
 					requete.add(Exec, "cell 9 5 1 1,alignx left,aligny top");
 					requete.add(num, "cell 9 5 1 1,alignx left,aligny top");
 					requete.add(numText, "cell 9 5 1 1,alignx left,aligny center");
@@ -989,7 +1051,12 @@ public class DBAINTERVENTION {
 					anneed.setVisible(false);
 					anneef.setVisible(false);
 					moisf.setVisible(false);
-					jourf.setVisible(false);
+					requete.remove(heured);
+					requete.remove(mind);
+					requete.remove(heuref);
+					requete.remove(minf);
+					requete.remove(lblHeureDeFin);
+					requete.remove(lblHeureDeDebut);
 					lblDateDeFin.setVisible(false);
 					numText.setVisible(true);
 					numText.setText("Numéro de l'employé :");
@@ -1045,6 +1112,12 @@ public class DBAINTERVENTION {
 					num.setVisible(true);
 					requete.add(Exec, "cell 6 4 2 1,alignx left,aligny top");
 					Exec.setVisible(true);
+					requete.remove(heured);
+					requete.remove(mind);
+					requete.remove(heuref);
+					requete.remove(minf);
+					requete.remove(lblHeureDeFin);
+					requete.remove(lblHeureDeDebut);
 					DefaultTableModel model = new DefaultTableModel();
 					table.setModel(model);
 
