@@ -107,6 +107,7 @@ public class DBAINTERVENTION {
 		frame.setBounds(100, 100, 763, 397);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new MigLayout("", "[grow]", "[grow]"));
+		frame.setVisible(true);
 
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setBackground(new Color(195, 214, 245));
