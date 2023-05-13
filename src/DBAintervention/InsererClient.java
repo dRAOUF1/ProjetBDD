@@ -1,12 +1,14 @@
 package DBAintervention;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JTextField;
 
+import component.ModernButton;
+import component.ModernTextField;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JButton;
@@ -18,21 +20,22 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class InsererClient {
 
 	private JFrame frmNouveauClient;
-	private JTextField num;
-	private JTextField civ;
-	private JTextField prenom;
-	private JTextField nom;
-	private JTextField ddn;
-	private JTextField adr;
-	private JTextField telpro;
+	private ModernTextField num;
+	private ModernTextField prenom;
+	private ModernTextField nom;
+	private ModernTextField ddn;
+	private ModernTextField adr;
+	private ModernTextField telpro;
 	private JLabel lblNewLabel;
-	private JTextField telpriv;
+	private ModernTextField telpriv;
 	private JLabel lblNewLabel_2;
-	private JTextField fax;
+	private ModernTextField fax;
 	
 	private Connection connection=null;
 	private Statement stmt=null;
@@ -67,18 +70,19 @@ public class InsererClient {
 	private void initialize() {
 		frmNouveauClient = new JFrame();
 		frmNouveauClient.setTitle("Nouveau client");
+		frmNouveauClient.setBackground(new Color(195, 214, 245));
 		frmNouveauClient.setBounds(100, 100, 304, 490);
 		frmNouveauClient.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNouveauClient.getContentPane().setLayout(null);
 		frmNouveauClient.setVisible(true);
+		frmNouveauClient.getContentPane().setBackground(new Color(195, 214, 245));
 		
 		JLabel lblNewLabel_1 = new JLabel("Numéro :");
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblNewLabel_1.setBounds(52, 28, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1);
 		
-		num = new JTextField();
-		num.setToolTipText("");
+		num = new ModernTextField();
 		num.setColumns(10);
 		num.setBounds(52, 42, 180, 17);
 		frmNouveauClient.getContentPane().add(num);
@@ -88,18 +92,12 @@ public class InsererClient {
 		lblNewLabel_1_1.setBounds(52, 71, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_1);
 		
-		civ = new JTextField();
-		civ.setToolTipText("");
-		civ.setColumns(10);
-		civ.setBounds(52, 85, 180, 17);
-		frmNouveauClient.getContentPane().add(civ);
-		
 		JLabel lblNewLabel_1_2 = new JLabel("Prenom :");
 		lblNewLabel_1_2.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblNewLabel_1_2.setBounds(52, 114, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_2);
 		
-		prenom = new JTextField();
+		prenom = new ModernTextField();
 		prenom.setToolTipText("");
 		prenom.setColumns(10);
 		prenom.setBounds(52, 128, 180, 17);
@@ -110,7 +108,7 @@ public class InsererClient {
 		lblNewLabel_1_3.setBounds(52, 153, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_3);
 		
-		nom = new JTextField();
+		nom = new ModernTextField();
 		nom.setToolTipText("");
 		nom.setColumns(10);
 		nom.setBounds(52, 167, 180, 17);
@@ -121,7 +119,7 @@ public class InsererClient {
 		lblNewLabel_1_4.setBounds(52, 192, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_4);
 		
-		ddn = new JTextField();
+		ddn = new ModernTextField();
 		ddn.setToolTipText("");
 		ddn.setColumns(10);
 		ddn.setBounds(52, 206, 180, 17);
@@ -132,7 +130,7 @@ public class InsererClient {
 		lblNewLabel_1_5.setBounds(52, 231, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_5);
 		
-		adr = new JTextField();
+		adr = new ModernTextField();
 		adr.setToolTipText("");
 		adr.setColumns(10);
 		adr.setBounds(52, 245, 180, 17);
@@ -143,7 +141,7 @@ public class InsererClient {
 		lblNewLabel_1_6.setBounds(52, 270, 159, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_6);
 		
-		telpro = new JTextField();
+		telpro = new ModernTextField();
 		telpro.setToolTipText("");
 		telpro.setColumns(10);
 		telpro.setBounds(52, 284, 180, 17);
@@ -154,7 +152,7 @@ public class InsererClient {
 		lblNewLabel.setBounds(52, 315, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel);
 		
-		telpriv = new JTextField();
+		telpriv = new ModernTextField();
 		telpriv.setToolTipText("");
 		telpriv.setColumns(10);
 		telpriv.setBounds(52, 329, 180, 17);
@@ -165,14 +163,18 @@ public class InsererClient {
 		lblNewLabel_2.setBounds(52, 354, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_2);
 		
-		fax = new JTextField();
+		fax = new ModernTextField();
 		fax.setToolTipText("");
 		fax.setColumns(10);
 		fax.setBounds(52, 368, 180, 17);
 		frmNouveauClient.getContentPane().add(fax);
 		
+		final JComboBox civ = new JComboBox();
+		civ.setModel(new DefaultComboBoxModel(new String[] {"M", "Mle", "Mme"}));
+		civ.setBounds(52, 85, 180, 22);
+		frmNouveauClient.getContentPane().add(civ);
 		
-		JButton btnInserer = new JButton("Inserer");
+		JButton btnInserer = new ModernButton("Inserer");
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -180,7 +182,7 @@ public class InsererClient {
 					Class.forName("oracle.jdbc.driver.OracleDriver");
 					connection=DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
 					stmt=connection.createStatement();
-					rs=stmt.executeQuery("INSERT INTO CLIENT VALUES("+num.getText()+",'"+civ.getText()+"','"+prenom.getText()+"','"+nom.getText()+"','"+ddn.getText()+"','"+adr.getText()+"','"+telpro.getText()+"','"+telpriv.getText()+"','"+fax.getText()+"')");
+					rs=stmt.executeQuery("INSERT INTO CLIENT VALUES("+num.getText()+",'"+civ.getSelectedItem().toString()+"','"+prenom.getText()+"','"+nom.getText()+"','"+ddn.getText()+"','"+adr.getText()+"','"+telpro.getText()+"','"+telpriv.getText()+"','"+fax.getText()+"')");
 					rs=stmt.executeQuery("commit");
      
 					frmNouveauClient.dispose();
@@ -204,5 +206,7 @@ public class InsererClient {
 		btnInserer.setFont(new Font("Arial", Font.PLAIN, 12));
 		btnInserer.setBounds(98, 405, 84, 23);
 		frmNouveauClient.getContentPane().add(btnInserer);
+		
+
 	}
 }

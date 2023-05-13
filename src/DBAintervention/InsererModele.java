@@ -1,5 +1,6 @@
 package DBAintervention;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -7,6 +8,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 
+import component.ModernButton;
+import component.ModernTextField;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JButton;
@@ -60,6 +63,8 @@ public class InsererModele {
 		frmNouveauModele = new JFrame();
 		frmNouveauModele.setTitle("Nouveau modèle ");
 		frmNouveauModele.setBounds(100, 100, 304, 263);
+		frmNouveauModele.setBackground(new Color(195, 214, 245));
+		frmNouveauModele.getContentPane().setBackground(new Color(195, 214, 245));
 		frmNouveauModele.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNouveauModele.getContentPane().setLayout(null);
 		frmNouveauModele.setVisible(true);
@@ -69,7 +74,7 @@ public class InsererModele {
 		lblNewLabel_1.setBounds(52, 28, 130, 11);
 		frmNouveauModele.getContentPane().add(lblNewLabel_1);
 		
-		nummodele = new JTextField();
+		nummodele = new ModernTextField();
 		nummodele.setToolTipText("");
 		nummodele.setColumns(10);
 		nummodele.setBounds(52, 42, 180, 17);
@@ -80,7 +85,7 @@ public class InsererModele {
 		lblNewLabel_1_1.setBounds(52, 71, 159, 11);
 		frmNouveauModele.getContentPane().add(lblNewLabel_1_1);
 		
-		nummarque = new JTextField();
+		nummarque = new ModernTextField();
 		nummarque.setToolTipText("");
 		nummarque.setColumns(10);
 		nummarque.setBounds(52, 85, 180, 17);
@@ -91,14 +96,14 @@ public class InsererModele {
 		lblNewLabel_1_2.setBounds(52, 114, 111, 11);
 		frmNouveauModele.getContentPane().add(lblNewLabel_1_2);
 		
-		modele = new JTextField();
+		modele = new ModernTextField();
 		modele.setToolTipText("");
 		modele.setColumns(10);
 		modele.setBounds(52, 128, 180, 17);
 		frmNouveauModele.getContentPane().add(modele);
 		
 		
-		JButton btnInserer = new JButton("Inserer");
+		JButton btnInserer = new ModernButton("Inserer");
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

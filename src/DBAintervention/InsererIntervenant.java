@@ -1,5 +1,6 @@
 package DBAintervention;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -7,6 +8,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 
+import component.ModernButton;
+import component.ModernTextField;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -21,14 +24,13 @@ import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import component.ModernComboBox;
 
 public class InsererIntervenant {
 
 	private JFrame frmNouveauClient;
 	private JTextField NUMINTERVENTION;
 	private JTextField NUMEMPLOYE;
-	private JTextField DATEDEBUT;
-	private JTextField DATEFIN;
 	
 	private Connection connection=null;
 	private Statement stmt=null;
@@ -63,6 +65,8 @@ public class InsererIntervenant {
 	private void initialize() {
 		frmNouveauClient = new JFrame();
 		frmNouveauClient.setTitle("Nouvel intervenant");
+		frmNouveauClient.setBackground(new Color(195, 214, 245));
+		frmNouveauClient.getContentPane().setBackground(new Color(195, 214, 245));
 		frmNouveauClient.setBounds(100, 100, 308, 298);
 		frmNouveauClient.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNouveauClient.getContentPane().setLayout(null);
@@ -73,7 +77,7 @@ public class InsererIntervenant {
 		lblNewLabel_1.setBounds(52, 28, 151, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1);
 		
-		NUMINTERVENTION = new JTextField();
+		NUMINTERVENTION = new ModernTextField();
 		NUMINTERVENTION.setToolTipText("");
 		NUMINTERVENTION.setColumns(10);
 		NUMINTERVENTION.setBounds(52, 42, 180, 17);
@@ -84,7 +88,7 @@ public class InsererIntervenant {
 		lblNewLabel_1_2.setBounds(52, 67, 137, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_2);
 		
-		NUMEMPLOYE = new JTextField();
+		NUMEMPLOYE = new ModernTextField();
 		NUMEMPLOYE.setToolTipText("");
 		NUMEMPLOYE.setColumns(10);
 		NUMEMPLOYE.setBounds(52, 81, 180, 17);
@@ -95,35 +99,75 @@ public class InsererIntervenant {
 		lblNewLabel_1_3.setBounds(52, 106, 180, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_3);
 		
-		DATEDEBUT = new JTextField();
-		DATEDEBUT.setToolTipText("");
-		DATEDEBUT.setColumns(10);
-		DATEDEBUT.setBounds(52, 120, 180, 17);
-		frmNouveauClient.getContentPane().add(DATEDEBUT);
-		
 				
 		JLabel lblNewLabel_1_5 = new JLabel("Date de la fin de l'intervention :");
 		lblNewLabel_1_5.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblNewLabel_1_5.setBounds(52, 145, 180, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_5);
 		
-		DATEFIN = new JTextField();
-		DATEFIN.setToolTipText("");
-		DATEFIN.setColumns(10);
-		DATEFIN.setBounds(52, 159, 180, 17);
-		frmNouveauClient.getContentPane().add(DATEFIN);
 		
-	
-		JButton btnInserer = new JButton("Inserer");
+		final ModernComboBox jourd = new ModernComboBox();
+		jourd.setFont(new Font("Arial", Font.PLAIN, 11));
+		jourd.setBounds(52, 120, 63, 17);
+		jourd.setModel(new DefaultComboBoxModel(new String[] { "Jour", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+				"10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26",
+				"27", "28", "29", "30", "31" }));
+		frmNouveauClient.getContentPane().add(jourd);
+		
+		final ModernComboBox moisd = new ModernComboBox();
+		moisd.setFont(new Font("Arial", Font.PLAIN, 11));
+		moisd.setBounds(119, 120, 65, 17);
+		moisd.setModel(new DefaultComboBoxModel(
+				new String[] { "Mois", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+		frmNouveauClient.getContentPane().add(moisd);
+		
+		final ModernComboBox anneed = new ModernComboBox();
+		anneed.setFont(new Font("Arial", Font.PLAIN, 11));
+		anneed.setBounds(188, 120, 67, 17);
+		anneed.setModel(new DefaultComboBoxModel(new String[] { "Année ", "1995", "1996", "1997", "1998", "1999",
+				"2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012",
+				"2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023" }));
+		frmNouveauClient.getContentPane().add(anneed);
+		
+		final ModernComboBox jourf = new ModernComboBox();
+		jourf.setFont(new Font("Arial", Font.PLAIN, 11));
+		jourf.setBounds(52, 164, 63, 17);
+		jourf.setModel(new DefaultComboBoxModel(new String[] { "Jour", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+				"10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26",
+				"27", "28", "29", "30", "31" }));
+		frmNouveauClient.getContentPane().add(jourf);
+		
+		final ModernComboBox moisf = new ModernComboBox();
+		moisf.setFont(new Font("Arial", Font.PLAIN, 11));
+		moisf.setBounds(119, 164, 65, 17);
+		moisf.setModel(new DefaultComboBoxModel(
+				new String[] { "Mois", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+		frmNouveauClient.getContentPane().add(moisf);
+		
+		final ModernComboBox anneef = new ModernComboBox();
+		anneef.setFont(new Font("Arial", Font.PLAIN, 11));
+		anneef.setBounds(188, 164, 67, 17);
+		anneef.setModel(new DefaultComboBoxModel(new String[] { "Année ", "1995", "1996", "1997", "1998", "1999",
+				"2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012",
+				"2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023" }));
+		frmNouveauClient.getContentPane().add(anneef);
+		
+		JButton btnInserer = new ModernButton("Inserer");
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
 					Class.forName("oracle.jdbc.driver.OracleDriver");
 
+					String datedebString = jourd.getSelectedItem().toString() + "/"
+							+ moisd.getSelectedItem().toString() + "/"
+							+ anneed.getSelectedItem().toString();
+					String datefinString = jourf.getSelectedItem().toString() + "/"
+							+ moisf.getSelectedItem().toString() + "/"
+							+ anneef.getSelectedItem().toString();
 					connection=DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost?useUnicode=true&characterEncoding=utf8");
 					stmt=connection.createStatement();
-					rs=stmt.executeQuery("INSERT INTO Intervenants VALUES("+NUMINTERVENTION.getText()+","+NUMEMPLOYE.getText()+",'"+DATEDEBUT.getText()+"','"+DATEFIN.getText()+"')");
+					rs=stmt.executeQuery("INSERT INTO Intervenants VALUES("+NUMINTERVENTION.getText()+","+NUMEMPLOYE.getText()+",'"+datedebString+"','"+datefinString+"')");
 					rs=stmt.executeQuery("commit");
      
 					frmNouveauClient.dispose();

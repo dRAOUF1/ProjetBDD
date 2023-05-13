@@ -1,5 +1,6 @@
 package DBAintervention;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -7,6 +8,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 
+import component.ModernButton;
+import component.ModernTextField;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -65,7 +68,9 @@ public class InsererVehicule {
 	private void initialize() {
 		frmNouveauClient = new JFrame();
 		frmNouveauClient.setTitle("Nouveau véhicule ");
-		frmNouveauClient.setBounds(100, 100, 308, 366);
+		frmNouveauClient.setBounds(100, 100, 308, 320);
+		frmNouveauClient.setBackground(new Color(195, 214, 245));
+		frmNouveauClient.getContentPane().setBackground(new Color(195, 214, 245));
 		frmNouveauClient.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNouveauClient.getContentPane().setLayout(null);
 		frmNouveauClient.setVisible(true);
@@ -75,7 +80,7 @@ public class InsererVehicule {
 		lblNewLabel_1.setBounds(52, 28, 140, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1);
 		
-		numVehicule = new JTextField();
+		numVehicule = new ModernTextField();
 		numVehicule.setToolTipText("");
 		numVehicule.setColumns(10);
 		numVehicule.setBounds(52, 42, 180, 17);
@@ -86,7 +91,7 @@ public class InsererVehicule {
 		lblNewLabel_1_2.setBounds(52, 67, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_2);
 		
-		numClient = new JTextField();
+		numClient = new ModernTextField();
 		numClient.setToolTipText("");
 		numClient.setColumns(10);
 		numClient.setBounds(52, 81, 180, 17);
@@ -97,7 +102,7 @@ public class InsererVehicule {
 		lblNewLabel_1_3.setBounds(52, 106, 140, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_3);
 		
-		numModele = new JTextField();
+		numModele = new ModernTextField();
 		numModele.setToolTipText("");
 		numModele.setColumns(10);
 		numModele.setBounds(52, 120, 180, 17);
@@ -113,13 +118,13 @@ public class InsererVehicule {
 		lblNewLabel_1_5.setBounds(52, 184, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_5);
 		
-		annee = new JTextField();
+		annee = new ModernTextField();
 		annee.setToolTipText("");
 		annee.setColumns(10);
 		annee.setBounds(52, 198, 180, 17);
 		frmNouveauClient.getContentPane().add(annee);
 		
-		JButton btnInserer = new JButton("Inserer");
+		JButton btnInserer = new ModernButton("Inserer");
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -151,10 +156,10 @@ public class InsererVehicule {
 		});
 		
 		btnInserer.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnInserer.setBounds(94, 255, 84, 23);
+		btnInserer.setBounds(95, 234, 84, 23);
 		frmNouveauClient.getContentPane().add(btnInserer);
 		
-		numImat = new JTextField();
+		numImat = new ModernTextField();
 		numImat.setToolTipText("");
 		numImat.setColumns(10);
 		numImat.setBounds(52, 159, 180, 17);

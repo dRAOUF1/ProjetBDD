@@ -1,5 +1,6 @@
 package DBAintervention;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -7,6 +8,9 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 
+import component.ModernButton;
+import component.ModernComboBox;
+import component.ModernTextField;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -62,7 +66,9 @@ public class InsererEmploye {
 	 */
 	private void initialize() {
 		frmNouveauClient = new JFrame();
-		frmNouveauClient.setTitle("Nouveau employé");
+		frmNouveauClient.setTitle("Nouvel employé");
+		frmNouveauClient.setBackground(new Color(195, 214, 245));
+		frmNouveauClient.getContentPane().setBackground(new Color(195, 214, 245));
 		frmNouveauClient.setBounds(100, 100, 308, 366);
 		frmNouveauClient.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNouveauClient.getContentPane().setLayout(null);
@@ -73,7 +79,7 @@ public class InsererEmploye {
 		lblNewLabel_1.setBounds(52, 28, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1);
 		
-		num = new JTextField();
+		num = new ModernTextField();
 		num.setToolTipText("");
 		num.setColumns(10);
 		num.setBounds(52, 42, 180, 17);
@@ -84,7 +90,7 @@ public class InsererEmploye {
 		lblNewLabel_1_2.setBounds(52, 67, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_2);
 		
-		nom = new JTextField();
+		nom = new ModernTextField();
 		nom.setToolTipText("");
 		nom.setColumns(10);
 		nom.setBounds(52, 81, 180, 17);
@@ -95,7 +101,7 @@ public class InsererEmploye {
 		lblNewLabel_1_3.setBounds(52, 106, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_3);
 		
-		prenom = new JTextField();
+		prenom = new ModernTextField();
 		prenom.setToolTipText("");
 		prenom.setColumns(10);
 		prenom.setBounds(52, 120, 180, 17);
@@ -111,19 +117,19 @@ public class InsererEmploye {
 		lblNewLabel_1_5.setBounds(52, 184, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_5);
 		
-		salaire = new JTextField();
+		salaire = new ModernTextField();
 		salaire.setToolTipText("");
 		salaire.setColumns(10);
 		salaire.setBounds(52, 198, 180, 17);
 		frmNouveauClient.getContentPane().add(salaire);
 		
-		final JComboBox categorie = new JComboBox();
+		final JComboBox categorie = new ModernComboBox();
 		categorie.setFont(new Font("Arial", Font.PLAIN, 12));
 		categorie.setModel(new DefaultComboBoxModel(new String[] {"Mécanicien", "Assistant"}));
 		categorie.setBounds(52, 159, 180, 17);
 		frmNouveauClient.getContentPane().add(categorie);
 		
-		JButton btnInserer = new JButton("Inserer");
+		JButton btnInserer = new ModernButton("Inserer");
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
