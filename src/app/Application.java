@@ -24,6 +24,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
 import DBAintervention.DBAINTERVENTION;
+import Employes.RechercherEmploye;
 import component.ModernButton;
 import component.ModernTextField;
 import net.miginfocom.swing.MigLayout;
@@ -125,6 +126,14 @@ public class Application {
 							frmSeConnecter.dispose();
 							DBAINTERVENTION f1= new DBAINTERVENTION();
 						
+						}
+						else if (username.toLowerCase().contentEquals("employedba") && password.contentEquals("1234")) {
+							Class.forName("oracle.jdbc.driver.OracleDriver");
+							connection=DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
+							stmt=connection.createStatement();
+							
+							frmSeConnecter.dispose();
+							RechercherEmploye f2= new RechercherEmploye();
 						}
 						else {
 							System.out.println("Ereur");
