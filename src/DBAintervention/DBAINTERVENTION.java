@@ -560,7 +560,8 @@ public class DBAINTERVENTION {
 		} catch (Exception E) {
 			E.printStackTrace();
 		}
-
+		
+		
 		intervention = new JPanel();
 		intervention.setBackground(new Color(0xC3D6F5));
 		layeredPane.add(intervention, "name_1393742143025600");
@@ -620,6 +621,7 @@ public class DBAINTERVENTION {
 			E.printStackTrace();
 		}
 
+	
 		requete = new JPanel();
 		requete.setBackground(new Color(0xC3D6F5));
 		layeredPane.add(requete, "name_1392722723516900");
@@ -1047,10 +1049,19 @@ public class DBAINTERVENTION {
 					lblDateDeDebut.setVisible(false);
 					requete.add(lblDateDeDebut, "cell 9 6,alignx left,aligny center");
 					jourd.setVisible(false);
+					requete.remove(jourd);
+					requete.remove(moisd);
+					requete.remove(anneed);
+					requete.remove(anneef);
+					requete.remove(moisf);
+					requete.remove(jourf);
+					requete.remove(lblDateDeDebut);
+					requete.remove(lblDateDeFin);
 					moisd.setVisible(false);
 					anneed.setVisible(false);
 					anneef.setVisible(false);
 					moisf.setVisible(false);
+					jourf.setVisible(false);
 					requete.remove(heured);
 					requete.remove(mind);
 					requete.remove(heuref);
@@ -1065,7 +1076,7 @@ public class DBAINTERVENTION {
 					requete.add(num, "cell 5 2 3 1,alignx left,aligny top");
 					Exec.setVisible(true);
 					requete.add(Exec, "cell 6 3 2 1,alignx left,aligny top");
-					requete.add(scrollPane, "cell 2 4 6 4,grow ");
+					requete.add(scrollPane, "cell 1 4 7 4,grow ");
 					DefaultTableModel model = new DefaultTableModel();
 					table.setModel(model);
 
@@ -1104,12 +1115,12 @@ public class DBAINTERVENTION {
 					requete.add(jourf, "cell 3 3 3 1,growx,aligny center");
 					jourf.setVisible(true);
 					requete.add(lblDateDeFin, "cell 2 3,alignx left,aligny center");
-					lblDateDeFin.setVisible(false);
+					lblDateDeFin.setVisible(true);
 					requete.add(numText, "cell 9 5 3 1,alignx left,aligny center");
 					numText.setVisible(false);
 					numText.setText("Numéro de l'intervention :");
 					requete.add(num, "cell 9 5 3 1,alignx left,aligny top");
-					num.setVisible(true);
+					num.setVisible(false);
 					requete.add(Exec, "cell 6 4 2 1,alignx left,aligny top");
 					Exec.setVisible(true);
 					requete.remove(heured);
@@ -1152,6 +1163,83 @@ public class DBAINTERVENTION {
 			}
 
 		});
+//		JLayeredPane requete1 = new JLayeredPane();
+//		requete1.setBackground(new Color(0xC3D6F5));
+//		layeredPane.add(requete1, "name_1465341696889900");
+//		requete1.setLayout(new CardLayout(0, 0));
+//		
+//		JPanel panel_1 = new JPanel();
+//		requete1.add(panel_1, "name_1465480996461400");
+//		panel_1.setBackground(new Color(0xC3D6F5));
+//		panel_1.setLayout(
+//				new MigLayout("", "[57.00:n,grow][10.00:n][73.00px:93.00px][38px,grow][3px][7px][48px,grow][316px][10.00,grow][]", "[][20px][18px][][18px][][17px][19px][136px]"));
+//		
+//		panel_1.add(lblDateDeDebut, "cell 2 2,alignx left,aligny center");
+//		lblDateDeDebut.setVisible(true);
+//		panel_1.add(comboBox, "cell 2 1 6 1,alignx left,aligny center");
+//		panel_1.add(jourd, "cell 3 2 3 1,growx,aligny center");
+//		jourd.setVisible(true);
+//		panel_1.add(moisd, "cell 6 2,growx,aligny center");
+//		moisd.setVisible(true);
+//		panel_1.add(anneed, "cell 7 2,alignx left,aligny center");
+//		anneed.setVisible(true);
+//		panel_1.add(anneef, "cell 7 4,alignx left,aligny center");
+//		anneef.setVisible(true);
+//		panel_1.add(moisf, "cell 6 4,growx,aligny center");
+//		moisf.setVisible(true);
+//		panel_1.add(jourf, "cell 3 4 3 1,growx,aligny center");
+//		jourf.setVisible(true);
+//		panel_1.add(lblDateDeFin, "cell 2 4,alignx left,aligny center");
+//		lblDateDeFin.setVisible(true);
+//		panel_1.add(numText, "cell 2 6 3 1,alignx left,aligny center");
+//		numText.setVisible(true);
+//		numText.setText("Numéro de l'intervention :");
+//		panel_1.add(num, "cell 5 6 3 1,alignx left,aligny top");
+//		num.setVisible(true);
+//		panel_1.add(heured, "cell 3 3 3 1,growx");
+//		heured.setVisible(true);
+//		panel_1.add(mind, "cell 6 3,growx");
+//		mind.setVisible(true);
+//		panel_1.add(heuref, "cell 3 5 3 1,growx");
+//		heuref.setVisible(true);
+//		panel_1.add(minf, "cell 6 5,growx");
+//		panel_1.add(lblHeureDeDebut, "cell 2 3,alignx left");
+//		panel_1.add(lblHeureDeFin, "cell 2 5,alignx left");
+//		minf.setVisible(true);					
+//		panel_1.add(Exec, "cell 6 7 2 1,alignx left,aligny top");
+//		
+//		Exec.setVisible(true);
+//
+//		Exec.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				try {
+//					Class.forName("oracle.jdbc.driver.OracleDriver");
+//					connection = DriverManager
+//							.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
+//					stmt = connection.createStatement();
+//					String datedebString = jourd.getSelectedItem().toString() + "-"
+//							+ moisd.getSelectedItem().toString() + "-"
+//							+ anneed.getSelectedItem().toString();
+//					String datefinString = jourf.getSelectedItem().toString() + "-"
+//							+ moisf.getSelectedItem().toString() + "-"
+//							+ anneef.getSelectedItem().toString();
+//					String sqlString = String.format(
+//							"Update interventions set DATEDEBINTERV=TO_DATE('%s %s:%s','RRRR-MM-DD HH24:MI') where NUMINTERVENTION=%s",
+//							datedebString,heured.getSelectedItem().toString(),mind.getSelectedItem().toString(), num.getText());
+//					rs = stmt.executeQuery(sqlString);
+//
+//					sqlString = String.format(
+//							"Update interventions set DATEDEBINTERV=TO_DATE('%s %s:%s','RRRR-MM-DD HH24:MI') where NUMINTERVENTION=%s",
+//							datedebString,heuref.getSelectedItem().toString(),minf.getSelectedItem().toString(), num.getText());;
+//					rs = stmt.executeQuery(sqlString);
+//
+//					System.out.print(sqlString);
+//
+//				} catch (Exception E) {
+//					E.printStackTrace();
+//				}
+//			}
+//		});
 	}
 
 	public void changerPannel(JPanel p) {
