@@ -732,6 +732,37 @@ public class DBAINTERVENTION {
 		num.setColumns(10);
 
 		final ModernButton Exec = new ModernButton("Exécuter ");
+		Exec.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Class.forName("oracle.jdbc.driver.OracleDriver");
+					connection = DriverManager
+							.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
+					stmt = connection.createStatement();
+					String datedebString = jourd.getSelectedItem().toString() + "-"
+							+ moisd.getSelectedItem().toString() + "-"
+							+ anneed.getSelectedItem().toString();
+					String datefinString = jourf.getSelectedItem().toString() + "-"
+							+ moisf.getSelectedItem().toString() + "-"
+							+ anneef.getSelectedItem().toString();
+					String sqlString = String.format(
+							"Update interventions set DATEDEBINTERV=TO_DATE('%s %s:%s','DD-MM-RRRR HH24:MI') where NUMINTERVENTION=%s",
+							datedebString,heured.getSelectedItem().toString(),mind.getSelectedItem().toString(), num.getText());
+					rs = stmt.executeQuery(sqlString);
+
+					sqlString = String.format(
+							"Update interventions set DATEFININTERV=TO_DATE('%s %s:%s','DD-MM-RRRR HH24:MI') where NUMINTERVENTION=%s",
+							datefinString,heuref.getSelectedItem().toString(),minf.getSelectedItem().toString(), num.getText());;
+					rs = stmt.executeQuery(sqlString);
+
+					System.out.println(sqlString);
+
+				} catch (Exception E) {
+					E.printStackTrace();
+				}
+			}
+		});
+
 
 		requete.add(Exec, "cell 6 7 2 1,alignx left,aligny top");
 
@@ -747,6 +778,7 @@ public class DBAINTERVENTION {
 			public void actionPerformed(ActionEvent e) {
 				switch (comboBox.getSelectedItem().toString()) {
 				case "• Changer la date et l’heure de l’intervention": {
+					scrollPane.setVisible(false);
 					requete.remove(scrollPane);
 					requete.add(lblDateDeDebut, "cell 2 2,alignx left,aligny center");
 					lblDateDeDebut.setVisible(true);
@@ -797,16 +829,16 @@ public class DBAINTERVENTION {
 										+ moisf.getSelectedItem().toString() + "-"
 										+ anneef.getSelectedItem().toString();
 								String sqlString = String.format(
-										"Update interventions set DATEDEBINTERV=TO_DATE('%s %s:%s','DD-MM-RRRR HH:MI') where NUMINTERVENTION=%s",
+										"Update interventions set DATEDEBINTERV=TO_DATE('%s %s:%s','DD-MM-RRRR HH24:MI') where NUMINTERVENTION=%s",
 										datedebString,heured.getSelectedItem().toString(),mind.getSelectedItem().toString(), num.getText());
 								rs = stmt.executeQuery(sqlString);
 
 								sqlString = String.format(
-										"Update interventions set DATEFININTERV=TO_DATE('%s %s:%s','DD-MM-RRRR HH:MI') where NUMINTERVENTION=%s",
-										datedebString,heuref.getSelectedItem().toString(),minf.getSelectedItem().toString(), num.getText());;
+										"Update interventions set DATEFININTERV=TO_DATE('%s %s:%s','DD-MM-RRRR HH24:MI') where NUMINTERVENTION=%s",
+										datefinString,heuref.getSelectedItem().toString(),minf.getSelectedItem().toString(), num.getText());;
 								rs = stmt.executeQuery(sqlString);
 
-								System.out.print(sqlString);
+								System.out.println(sqlString);
 
 							} catch (Exception E) {
 								E.printStackTrace();
@@ -1153,17 +1185,18 @@ public class DBAINTERVENTION {
 								connection = DriverManager
 										.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
 								stmt = connection.createStatement();
-								String datedebString = jourd.getSelectedItem().toString() + "/"
-										+ moisd.getSelectedItem().toString() + "/"
+								String datedebString = jourd.getSelectedItem().toString() + "-"
+										+ moisd.getSelectedItem().toString() + "-"
 										+ anneed.getSelectedItem().toString();
-								String datefinString = jourf.getSelectedItem().toString() + "/"
-										+ moisf.getSelectedItem().toString() + "/"
+								String datefinString = jourf.getSelectedItem().toString() + "-"
+										+ moisf.getSelectedItem().toString() + "-"
 										+ anneef.getSelectedItem().toString();
 								String sqlString = String.format(
 										"select * from interventions where DATEDEBINTERV>'%s' and DATEFININTERV<'%s'",
 										datedebString, datefinString);
 								rs = stmt.executeQuery(sqlString);
 								table.setModel(DbUtils.resultSetToTableModel(rs));
+								System.out.print(sqlString);
 							} catch (Exception E) {
 								E.printStackTrace();
 							}
