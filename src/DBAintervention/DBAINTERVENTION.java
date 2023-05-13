@@ -7,6 +7,7 @@ import net.miginfocom.swing.MigLayout;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JSplitPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
@@ -52,6 +53,7 @@ import component.MyJTable;
 import javax.swing.JLayeredPane;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 
 public class DBAINTERVENTION {
@@ -795,12 +797,12 @@ public class DBAINTERVENTION {
 										+ moisf.getSelectedItem().toString() + "-"
 										+ anneef.getSelectedItem().toString();
 								String sqlString = String.format(
-										"Update interventions set DATEDEBINTERV=TO_DATE('%s %s:%s','RRRR-MM-DD HH24:MI') where NUMINTERVENTION=%s",
+										"Update interventions set DATEDEBINTERV=TO_DATE('%s %s:%s','DD-MM-RRRR HH:MI') where NUMINTERVENTION=%s",
 										datedebString,heured.getSelectedItem().toString(),mind.getSelectedItem().toString(), num.getText());
 								rs = stmt.executeQuery(sqlString);
 
 								sqlString = String.format(
-										"Update interventions set DATEDEBINTERV=TO_DATE('%s %s:%s','RRRR-MM-DD HH24:MI') where NUMINTERVENTION=%s",
+										"Update interventions set DATEFININTERV=TO_DATE('%s %s:%s','DD-MM-RRRR HH:MI') where NUMINTERVENTION=%s",
 										datedebString,heuref.getSelectedItem().toString(),minf.getSelectedItem().toString(), num.getText());;
 								rs = stmt.executeQuery(sqlString);
 
@@ -815,6 +817,7 @@ public class DBAINTERVENTION {
 				}
 				case "• Afficher les noms et prénoms des employes ayant fait plus de 3 interventions": {
 					scrollPane.setVisible(true);
+					scrollPane.setViewportView(table);
 					lblDateDeDebut.setVisible(false);
 					requete.add(lblDateDeDebut, "cell 9 6,alignx left,aligny center");
 					jourd.setVisible(false);
@@ -853,6 +856,7 @@ public class DBAINTERVENTION {
 
 				case "• Afficher la liste des véhicules": {
 					scrollPane.setVisible(true);
+					scrollPane.setViewportView(table);
 					lblDateDeDebut.setVisible(false);
 					requete.add(lblDateDeDebut, "cell 9 6,alignx left,aligny center");
 					requete.add(scrollPane, "cell 2 2 6 4,grow ");
@@ -890,6 +894,8 @@ public class DBAINTERVENTION {
 				}
 				case "• Afficher les détails d’une intervention": {
 					scrollPane.setVisible(true);
+					final JTable tableRequteIntervention= new MyJTable();
+					scrollPane.setViewportView(tableRequteIntervention);
 					lblDateDeDebut.setVisible(false);
 					requete.add(lblDateDeDebut, "cell 9 6,alignx left,aligny center");
 					jourd.setVisible(false);
@@ -913,8 +919,8 @@ public class DBAINTERVENTION {
 					Exec.setVisible(true);
 					requete.add(Exec, "cell 6 3 2 1,alignx left,aligny top");
 					requete.add(scrollPane, "cell 1 4 8 4,grow ");
-					DefaultTableModel model = new DefaultTableModel();
-					table.setModel(model);
+//					DefaultTableModel model = new DefaultTableModel();
+//					table.setModel(model);
 
 					Exec.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -926,7 +932,7 @@ public class DBAINTERVENTION {
 								stmt = connection.createStatement();
 								rs = stmt.executeQuery(
 										"SELECT * FROM interventions WHERE NUMINTERVENTION =" + num.getText());
-								table.setModel(DbUtils.resultSetToTableModel(rs));
+								tableRequteIntervention.setModel(DbUtils.resultSetToTableModel(rs));
 							} catch (Exception E) {
 								E.printStackTrace();
 							}
@@ -936,6 +942,7 @@ public class DBAINTERVENTION {
 				}
 				case "• Afficher les modèles et leur marque": {
 					scrollPane.setVisible(true);
+					scrollPane.setViewportView(table);
 					lblDateDeDebut.setVisible(false);
 					requete.add(lblDateDeDebut, "cell 9 6,alignx left,aligny center");
 					jourd.setVisible(false);
@@ -973,6 +980,7 @@ public class DBAINTERVENTION {
 				}
 				case "• Afficher les véhicules sur lesquels il y a au moins une intervention.": {
 					scrollPane.setVisible(true);
+					scrollPane.setViewportView(table);
 					lblDateDeDebut.setVisible(false);
 					requete.add(lblDateDeDebut, "cell 9 6,alignx left,aligny center");
 					jourd.setVisible(false);
@@ -1010,6 +1018,7 @@ public class DBAINTERVENTION {
 				}
 				case "• Afficher les employés dont le nom commence par un T": {
 					scrollPane.setVisible(true);
+					scrollPane.setViewportView(table);
 					lblDateDeDebut.setVisible(false);
 					requete.add(lblDateDeDebut, "cell 9 6,alignx left,aligny center");
 					jourd.setVisible(false);
@@ -1046,6 +1055,8 @@ public class DBAINTERVENTION {
 				}
 				case "• Afficher la liste des interventions faites par un employé": {
 					scrollPane.setVisible(true);
+					final JTable tableRequteInterventionEmploye=new MyJTable();
+					scrollPane.setViewportView(tableRequteInterventionEmploye);
 					lblDateDeDebut.setVisible(false);
 					requete.add(lblDateDeDebut, "cell 9 6,alignx left,aligny center");
 					jourd.setVisible(false);
@@ -1077,8 +1088,8 @@ public class DBAINTERVENTION {
 					Exec.setVisible(true);
 					requete.add(Exec, "cell 6 3 2 1,alignx left,aligny top");
 					requete.add(scrollPane, "cell 1 4 7 4,grow ");
-					DefaultTableModel model = new DefaultTableModel();
-					table.setModel(model);
+//					DefaultTableModel model = new DefaultTableModel();
+//					table.setModel(model);
 
 					Exec.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -1089,7 +1100,8 @@ public class DBAINTERVENTION {
 										.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
 								stmt = connection.createStatement();
 								rs = stmt.executeQuery("SELECT * FROM intervenants WHERE numemploye =" + num.getText());
-								table.setModel(DbUtils.resultSetToTableModel(rs));
+								tableRequteInterventionEmploye.setModel(DbUtils.resultSetToTableModel(rs));
+								System.out.print(rs);
 							} catch (Exception E) {
 								E.printStackTrace();
 							}
@@ -1099,6 +1111,7 @@ public class DBAINTERVENTION {
 				}
 				case "• Déterminer la liste des interventions faites dans une période donnée": {
 					scrollPane.setVisible(true);
+					scrollPane.setViewportView(table);
 					requete.add(scrollPane, "cell 1 5 8 1,grow");
 					requete.add(lblDateDeDebut, "cell 2 2,alignx left,aligny center");
 					lblDateDeDebut.setVisible(true);
