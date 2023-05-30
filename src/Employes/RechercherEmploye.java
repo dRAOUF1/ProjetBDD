@@ -98,6 +98,7 @@ public class RechercherEmploye {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setBackground(new Color(195, 214, 245));
 		frame.getContentPane().setLayout(new MigLayout("", "[80.00:84.00][grow]", "[grow]"));
+		frame.setVisible(true);
 
 		JSplitPane splitPane = new JSplitPane();
 		frame.getContentPane().add(splitPane, "cell 0 0 2 1,grow");
