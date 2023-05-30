@@ -1003,7 +1003,7 @@ public class DBAINTERVENTION {
 						connection = DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
 						stmt = connection.createStatement();
 						rs = stmt.executeQuery(
-								"SELECT distinct MODELE,MARQUE FROM MARQUE ,MODELE WHERE MARQUE.NUMMARQUE=MODELE.NUMMARQUE");
+								"SELECT distinct MARQUE,MODELE FROM MARQUE ,MODELE WHERE MARQUE.NUMMARQUE=MODELE.NUMMARQUE");
 						table.setModel(DbUtils.resultSetToTableModel(rs));
 					} catch (Exception E) {
 						E.printStackTrace();
