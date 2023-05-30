@@ -396,7 +396,7 @@ public class DBAINTERVENTION {
 
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(7, 46, 626, 255);
-		modele.add(scrollPane, "cell 0 1 3 1,growx");
+		modele.add(scrollPane, "cell 0 1 3 1,grow");
 
 		final MyJTable tableModele = new MyJTable();
 		scrollPane.setViewportView(tableModele);
@@ -444,7 +444,7 @@ public class DBAINTERVENTION {
 		vehicule = new JPanel();
 		vehicule.setBackground(new Color(195, 214, 245));
 		layeredPane.add(vehicule, "name_1393640284669700");
-		vehicule.setLayout(new MigLayout("", "[178px][265px,grow][183px]", "[18px][255px,grow][23px]"));
+		vehicule.setLayout(new MigLayout("", "[178px][265px,grow][183px]", "[:18px:18px][255px,grow][23px]"));
 
 		JLabel lblNewLabelVehicule = new JLabel("Véhicule ");
 		lblNewLabelVehicule.setBounds(7, 16, 626, 18);
@@ -454,7 +454,7 @@ public class DBAINTERVENTION {
 
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(7, 46, 626, 255);
-		vehicule.add(scrollPane, "cell 0 1 3 1,growx");
+		vehicule.add(scrollPane, "cell 0 1 3 1,grow");
 
 		final MyJTable tableVehicule = new MyJTable();
 		scrollPane.setViewportView(tableVehicule);
@@ -515,7 +515,7 @@ public class DBAINTERVENTION {
 
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(7, 46, 626, 255);
-		intervenant.add(scrollPane, "cell 0 1 3 1,growx");
+		intervenant.add(scrollPane, "cell 0 1 3 1,grow");
 
 		final MyJTable tableIntervenant = new MyJTable();
 		scrollPane.setViewportView(tableIntervenant);
@@ -577,7 +577,7 @@ public class DBAINTERVENTION {
 
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(5, 42, 626, 255);
-		intervention.add(scrollPane, "cell 0 1 3 1,growx");
+		intervention.add(scrollPane, "cell 0 1 3 1,grow");
 
 		final MyJTable tableInterventions = new MyJTable();
 		scrollPane.setViewportView(tableInterventions);
