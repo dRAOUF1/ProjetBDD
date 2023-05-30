@@ -14,7 +14,6 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
 import DBAintervention.InsererClient;
-import DBAintervention.InsererEmploye;
 import component.ModernButton;
 import component.ModernTextField;
 import component.MyJTable;
@@ -95,7 +94,6 @@ public class RechercherEmploye {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setBackground(new Color(195, 214, 245));
 		frame.getContentPane().setLayout(new MigLayout("", "[80.00:84.00][grow]", "[grow]"));
-		frame.setVisible(true);
 		
 		JSplitPane splitPane = new JSplitPane();
 		frame.getContentPane().add(splitPane, "cell 0 0 2 1,grow");
@@ -130,7 +128,7 @@ public class RechercherEmploye {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					InsererEmploye fInsererEmploye = new InsererEmploye();
+					InsererClient fInsererClient = new InsererClient();
 
 				} catch (Exception E) {
 					E.printStackTrace();
