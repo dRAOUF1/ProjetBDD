@@ -12,9 +12,9 @@ import javax.swing.JList;
 import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 
-public class ModernComboBox extends JComboBox<String> {
+public class MaComboBox extends JComboBox<String> {
 
-    public ModernComboBox() {
+    public MaComboBox() {
         super();
         this.setMaximumSize(new Dimension(1500, 17));
         setUI(new BasicComboBoxUI() {

@@ -7,9 +7,9 @@ import javax.swing.BorderFactory;
 import javax.swing.*;
 
 
-public class MyJTable extends JTable {
+public class MonTableau extends JTable {
 	
-	public MyJTable() {
+	public MonTableau() {
 		super();
 		this.setBackground(new Color(0xF0F0F0));
 		this.setForeground(Color.BLACK);

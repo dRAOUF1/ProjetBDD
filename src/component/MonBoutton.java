@@ -7,11 +7,11 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
 import javax.swing.JButton;
-public class ModernButton extends JButton {
+public class MonBoutton extends JButton {
 
 	    private static final long serialVersionUID = 1L;
 
-	    public ModernButton(String text) {
+	    public MonBoutton(String text) {
 	        super(text);
 	        setOpaque(false);
 	        setForeground(Color.WHITE);

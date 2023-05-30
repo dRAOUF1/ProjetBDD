@@ -15,9 +15,9 @@ import com.jgoodies.forms.layout.RowSpec;
 
 import DBAintervention.InsererClient;
 import DBAintervention.InsererEmploye;
-import component.ModernButton;
-import component.ModernTextField;
-import component.MyJTable;
+import component.MonBoutton;
+import component.MonTextField;
+import component.MonTableau;
 
 import java.awt.FlowLayout;
 import net.miginfocom.swing.MigLayout;
@@ -60,8 +60,8 @@ public class RechercherEmploye {
 	private Statement stmt = null;
 	private ResultSet rs = null;
 	private JButton btnRecherceher;
-	private ModernButton btnNewButton_1;
-	private ModernButton btnNewButton_2;
+	private MonBoutton btnNewButton_1;
+	private MonBoutton btnNewButton_2;
 	private JPanel maj;
 	JLayeredPane layeredPane;
 
@@ -114,11 +114,11 @@ public class RechercherEmploye {
 						FormSpecs.DEFAULT_ROWSPEC, RowSpec.decode("6dlu"), FormSpecs.DEFAULT_ROWSPEC,
 						FormSpecs.RELATED_GAP_ROWSPEC, FormSpecs.DEFAULT_ROWSPEC, }));
 
-		btnRecherceher = new ModernButton("Recherche un employé");
+		btnRecherceher = new MonBoutton("Recherche un employé");
 
 		panel.add(btnRecherceher, "1, 4");
 
-		btnNewButton_1 = new ModernButton("Mettre à jour");
+		btnNewButton_1 = new MonBoutton("Mettre à jour");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -132,7 +132,7 @@ public class RechercherEmploye {
 		btnNewButton_1.setText("Insérer un employé");
 		panel.add(btnNewButton_1, "1, 6");
 
-		btnNewButton_2 = new ModernButton("Mettre à jour");
+		btnNewButton_2 = new MonBoutton("Mettre à jour");
 		btnNewButton_2.setFont(new Font("SansSerif", Font.PLAIN, 11));
 		btnNewButton_2.setText("Mettre à jour \r\nun employé");
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -160,12 +160,12 @@ public class RechercherEmploye {
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 12));
 		panel_1.add(lblNewLabel, "cell 0 1,alignx left,aligny center");
 
-		numemp = new ModernTextField();
+		numemp = new MonTextField();
 		numemp.setMaximumSize(new Dimension(1500, 17));
 		panel_1.add(numemp, "cell 1 1,growx,aligny center");
 		numemp.setColumns(10);
 
-		JButton btnNewButton = new ModernButton("Rechercher");
+		JButton btnNewButton = new MonBoutton("Rechercher");
 		btnNewButton.setMaximumSize(new Dimension(75, 22));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -203,7 +203,7 @@ public class RechercherEmploye {
 		table = new JScrollPane();
 		panel_1.add(table, "cell 0 3 4 1,grow");
 
-		tableEmploye = new MyJTable();
+		tableEmploye = new MonTableau();
 		table.setViewportView(tableEmploye);
 		tableEmploye.setFont(new Font("Arial", Font.PLAIN, 12));
 
@@ -214,7 +214,7 @@ public class RechercherEmploye {
 		tabl = new JScrollPane();
 		panel_1.add(tabl, "cell 0 5 4 1,grow");
 
-		tableInt = new MyJTable();
+		tableInt = new MonTableau();
 		tabl.setViewportView(tableInt);
 		tableInt.setFont(new Font("Arial", Font.PLAIN, 12));
 
@@ -233,7 +233,7 @@ public class RechercherEmploye {
 		lblNewLabel_11.setBounds(52, 28, 111, 11);
 		maj.add(lblNewLabel_11, "cell 1 1,alignx left,aligny center");
 
-		final ModernTextField num = new ModernTextField();
+		final MonTextField num = new MonTextField();
 		num.setToolTipText("");
 		num.setColumns(10);
 		num.setBounds(52, 42, 180, 17);
@@ -244,13 +244,13 @@ public class RechercherEmploye {
 		lblNewLabel_1_2.setBounds(52, 67, 111, 11);
 		maj.add(lblNewLabel_1_2, "cell 1 2,alignx left,aligny center");
 
-		final ModernTextField nom = new ModernTextField();
+		final MonTextField nom = new MonTextField();
 		nom.setToolTipText("");
 		nom.setColumns(10);
 		nom.setBounds(52, 81, 180, 17);
 		maj.add(nom, "cell 2 2,growx");
 
-		JButton btnMajNom = new ModernButton("Inserer");
+		JButton btnMajNom = new MonBoutton("Inserer");
 		btnMajNom.setText("Mettre à jour");
 		
 
@@ -263,13 +263,13 @@ public class RechercherEmploye {
 		lblNewLabel_1_3.setBounds(52, 106, 111, 11);
 		maj.add(lblNewLabel_1_3, "cell 1 3,alignx left,aligny center");
 
-		final ModernTextField prenom = new ModernTextField();
+		final MonTextField prenom = new MonTextField();
 		prenom.setToolTipText("");
 		prenom.setColumns(10);
 		prenom.setBounds(52, 120, 180, 17);
 		maj.add(prenom, "cell 2 3,growx");
 
-		ModernButton btnMajPrenom = new ModernButton("Inserer");
+		MonBoutton btnMajPrenom = new MonBoutton("Inserer");
 		btnMajPrenom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -296,13 +296,13 @@ public class RechercherEmploye {
 		lblNewLabel_1_4.setBounds(52, 145, 111, 11);
 		maj.add(lblNewLabel_1_4, "cell 1 4,alignx left,aligny center");
 
-		final ModernComboBox categorie = new ModernComboBox();
+		final MaComboBox categorie = new MaComboBox();
 		categorie.setFont(new Font("Arial", Font.PLAIN, 12));
 		categorie.setModel(new DefaultComboBoxModel(new String[] { "Mécanicien", "Assistant" }));
 		categorie.setBounds(52, 159, 180, 17);
 		maj.add(categorie, "cell 2 4,growx");
 
-		ModernButton btnMajCat = new ModernButton("Inserer");
+		MonBoutton btnMajCat = new MonBoutton("Inserer");
 		btnMajCat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -329,13 +329,13 @@ public class RechercherEmploye {
 		lblNewLabel_1_5.setBounds(52, 184, 111, 11);
 		maj.add(lblNewLabel_1_5, "cell 1 5,alignx left,aligny center");
 
-		final ModernTextField salaire = new ModernTextField();
+		final MonTextField salaire = new MonTextField();
 		salaire.setToolTipText("");
 		salaire.setColumns(10);
 		salaire.setBounds(52, 198, 180, 17);
 		maj.add(salaire, "cell 2 5,growx");
 
-		ModernButton btnMajSalaire = new ModernButton("Inserer");
+		MonBoutton btnMajSalaire = new MonBoutton("Inserer");
 		btnMajSalaire.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {

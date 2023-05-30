@@ -8,9 +8,9 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 
-import component.ModernButton;
-import component.ModernComboBox;
-import component.ModernTextField;
+import component.MonBoutton;
+import component.MaComboBox;
+import component.MonTextField;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -79,7 +79,7 @@ public class InsererEmploye {
 		lblNewLabel_1.setBounds(52, 28, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1);
 		
-		num = new ModernTextField();
+		num = new MonTextField();
 		num.setToolTipText("");
 		num.setColumns(10);
 		num.setBounds(52, 42, 180, 17);
@@ -90,7 +90,7 @@ public class InsererEmploye {
 		lblNewLabel_1_2.setBounds(52, 67, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_2);
 		
-		nom = new ModernTextField();
+		nom = new MonTextField();
 		nom.setToolTipText("");
 		nom.setColumns(10);
 		nom.setBounds(52, 81, 180, 17);
@@ -101,7 +101,7 @@ public class InsererEmploye {
 		lblNewLabel_1_3.setBounds(52, 106, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_3);
 		
-		prenom = new ModernTextField();
+		prenom = new MonTextField();
 		prenom.setToolTipText("");
 		prenom.setColumns(10);
 		prenom.setBounds(52, 120, 180, 17);
@@ -117,19 +117,19 @@ public class InsererEmploye {
 		lblNewLabel_1_5.setBounds(52, 184, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_5);
 		
-		salaire = new ModernTextField();
+		salaire = new MonTextField();
 		salaire.setToolTipText("");
 		salaire.setColumns(10);
 		salaire.setBounds(52, 198, 180, 17);
 		frmNouveauClient.getContentPane().add(salaire);
 		
-		final JComboBox categorie = new ModernComboBox();
+		final JComboBox categorie = new MaComboBox();
 		categorie.setFont(new Font("Arial", Font.PLAIN, 12));
 		categorie.setModel(new DefaultComboBoxModel(new String[] {"Mécanicien", "Assistant"}));
 		categorie.setBounds(52, 159, 180, 17);
 		frmNouveauClient.getContentPane().add(categorie);
 		
-		JButton btnInserer = new ModernButton("Inserer");
+		JButton btnInserer = new MonBoutton("Inserer");
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

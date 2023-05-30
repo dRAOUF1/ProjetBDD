@@ -24,8 +24,8 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
 import DBAintervention.DBAINTERVENTION;
-import component.ModernButton;
-import component.ModernTextField;
+import component.MonBoutton;
+import component.MonTextField;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -94,7 +94,7 @@ public class Application {
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
 		frmSeConnecter.getContentPane().add(lblNewLabel);
 		
-		Username = new ModernTextField();
+		Username = new MonTextField();
 		Username.setToolTipText("");
 		Username.setBounds(68, 116, 180, 17);
 		frmSeConnecter.getContentPane().add(Username);
@@ -110,7 +110,7 @@ public class Application {
 		lblNewLabel_2.setBounds(70, 157, 111, 11);
 		frmSeConnecter.getContentPane().add(lblNewLabel_2);
 		
-		JButton btnNewButton = new ModernButton("Se connecter");
+		JButton btnNewButton = new MonBoutton("Se connecter");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {

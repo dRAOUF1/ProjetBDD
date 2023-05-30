@@ -8,8 +8,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 
-import component.ModernButton;
-import component.ModernTextField;
+import component.MonBoutton;
+import component.MonTextField;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JButton;
@@ -74,7 +74,7 @@ public class InsererMarque {
 		lblNewLabel_1.setBounds(52, 28, 111, 11);
 		frmNouvelleMarque.getContentPane().add(lblNewLabel_1);
 		
-		num = new ModernTextField();
+		num = new MonTextField();
 		num.setToolTipText("");
 		num.setColumns(10);
 		num.setBounds(52, 42, 180, 17);
@@ -85,7 +85,7 @@ public class InsererMarque {
 		lblNewLabel_1_1.setBounds(52, 71, 111, 11);
 		frmNouvelleMarque.getContentPane().add(lblNewLabel_1_1);
 		
-		marque = new ModernTextField();
+		marque = new MonTextField();
 		marque.setToolTipText("");
 		marque.setColumns(10);
 		marque.setBounds(52, 85, 180, 17);
@@ -96,14 +96,14 @@ public class InsererMarque {
 		lblNewLabel_1_2.setBounds(52, 114, 111, 11);
 		frmNouvelleMarque.getContentPane().add(lblNewLabel_1_2);
 		
-		pays = new ModernTextField();
+		pays = new MonTextField();
 		pays.setToolTipText("");
 		pays.setColumns(10);
 		pays.setBounds(52, 128, 180, 17);
 		frmNouvelleMarque.getContentPane().add(pays);
 		
 		
-		JButton btnInserer = new ModernButton("Inserer");
+		JButton btnInserer = new MonBoutton("Inserer");
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

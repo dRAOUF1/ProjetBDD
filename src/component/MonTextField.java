@@ -6,9 +6,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
-public class ModernTextField extends JTextField {
+public class MonTextField extends JTextField {
     
-    public ModernTextField() {
+    public MonTextField() {
         super();
         setPreferredSize(new Dimension(200, 30));
         setFont(new Font("Arial", Font.PLAIN, 12));

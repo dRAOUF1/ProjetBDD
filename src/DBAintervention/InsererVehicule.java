@@ -8,8 +8,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 
-import component.ModernButton;
-import component.ModernTextField;
+import component.MonBoutton;
+import component.MonTextField;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -80,7 +80,7 @@ public class InsererVehicule {
 		lblNewLabel_1.setBounds(52, 28, 140, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1);
 		
-		numVehicule = new ModernTextField();
+		numVehicule = new MonTextField();
 		numVehicule.setToolTipText("");
 		numVehicule.setColumns(10);
 		numVehicule.setBounds(52, 42, 180, 17);
@@ -91,7 +91,7 @@ public class InsererVehicule {
 		lblNewLabel_1_2.setBounds(52, 67, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_2);
 		
-		numClient = new ModernTextField();
+		numClient = new MonTextField();
 		numClient.setToolTipText("");
 		numClient.setColumns(10);
 		numClient.setBounds(52, 81, 180, 17);
@@ -102,7 +102,7 @@ public class InsererVehicule {
 		lblNewLabel_1_3.setBounds(52, 106, 140, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_3);
 		
-		numModele = new ModernTextField();
+		numModele = new MonTextField();
 		numModele.setToolTipText("");
 		numModele.setColumns(10);
 		numModele.setBounds(52, 120, 180, 17);
@@ -118,13 +118,13 @@ public class InsererVehicule {
 		lblNewLabel_1_5.setBounds(52, 184, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_5);
 		
-		annee = new ModernTextField();
+		annee = new MonTextField();
 		annee.setToolTipText("");
 		annee.setColumns(10);
 		annee.setBounds(52, 198, 180, 17);
 		frmNouveauClient.getContentPane().add(annee);
 		
-		JButton btnInserer = new ModernButton("Inserer");
+		JButton btnInserer = new MonBoutton("Inserer");
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -159,7 +159,7 @@ public class InsererVehicule {
 		btnInserer.setBounds(95, 234, 84, 23);
 		frmNouveauClient.getContentPane().add(btnInserer);
 		
-		numImat = new ModernTextField();
+		numImat = new MonTextField();
 		numImat.setToolTipText("");
 		numImat.setColumns(10);
 		numImat.setBounds(52, 159, 180, 17);

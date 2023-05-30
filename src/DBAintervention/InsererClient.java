@@ -7,8 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
 
-import component.ModernButton;
-import component.ModernTextField;
+import component.MonBoutton;
+import component.MonTextField;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JButton;
@@ -26,16 +26,16 @@ import javax.swing.DefaultComboBoxModel;
 public class InsererClient {
 
 	private JFrame frmNouveauClient;
-	private ModernTextField num;
-	private ModernTextField prenom;
-	private ModernTextField nom;
-	private ModernTextField ddn;
-	private ModernTextField adr;
-	private ModernTextField telpro;
+	private MonTextField num;
+	private MonTextField prenom;
+	private MonTextField nom;
+	private MonTextField ddn;
+	private MonTextField adr;
+	private MonTextField telpro;
 	private JLabel lblNewLabel;
-	private ModernTextField telpriv;
+	private MonTextField telpriv;
 	private JLabel lblNewLabel_2;
-	private ModernTextField fax;
+	private MonTextField fax;
 	
 	private Connection connection=null;
 	private Statement stmt=null;
@@ -82,7 +82,7 @@ public class InsererClient {
 		lblNewLabel_1.setBounds(52, 28, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1);
 		
-		num = new ModernTextField();
+		num = new MonTextField();
 		num.setColumns(10);
 		num.setBounds(52, 42, 180, 17);
 		frmNouveauClient.getContentPane().add(num);
@@ -97,7 +97,7 @@ public class InsererClient {
 		lblNewLabel_1_2.setBounds(52, 114, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_2);
 		
-		prenom = new ModernTextField();
+		prenom = new MonTextField();
 		prenom.setToolTipText("");
 		prenom.setColumns(10);
 		prenom.setBounds(52, 128, 180, 17);
@@ -108,7 +108,7 @@ public class InsererClient {
 		lblNewLabel_1_3.setBounds(52, 153, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_3);
 		
-		nom = new ModernTextField();
+		nom = new MonTextField();
 		nom.setToolTipText("");
 		nom.setColumns(10);
 		nom.setBounds(52, 167, 180, 17);
@@ -119,7 +119,7 @@ public class InsererClient {
 		lblNewLabel_1_4.setBounds(52, 192, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_4);
 		
-		ddn = new ModernTextField();
+		ddn = new MonTextField();
 		ddn.setToolTipText("");
 		ddn.setColumns(10);
 		ddn.setBounds(52, 206, 180, 17);
@@ -130,7 +130,7 @@ public class InsererClient {
 		lblNewLabel_1_5.setBounds(52, 231, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_5);
 		
-		adr = new ModernTextField();
+		adr = new MonTextField();
 		adr.setToolTipText("");
 		adr.setColumns(10);
 		adr.setBounds(52, 245, 180, 17);
@@ -141,7 +141,7 @@ public class InsererClient {
 		lblNewLabel_1_6.setBounds(52, 270, 159, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_1_6);
 		
-		telpro = new ModernTextField();
+		telpro = new MonTextField();
 		telpro.setToolTipText("");
 		telpro.setColumns(10);
 		telpro.setBounds(52, 284, 180, 17);
@@ -152,7 +152,7 @@ public class InsererClient {
 		lblNewLabel.setBounds(52, 315, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel);
 		
-		telpriv = new ModernTextField();
+		telpriv = new MonTextField();
 		telpriv.setToolTipText("");
 		telpriv.setColumns(10);
 		telpriv.setBounds(52, 329, 180, 17);
@@ -163,7 +163,7 @@ public class InsererClient {
 		lblNewLabel_2.setBounds(52, 354, 111, 11);
 		frmNouveauClient.getContentPane().add(lblNewLabel_2);
 		
-		fax = new ModernTextField();
+		fax = new MonTextField();
 		fax.setToolTipText("");
 		fax.setColumns(10);
 		fax.setBounds(52, 368, 180, 17);
@@ -174,7 +174,7 @@ public class InsererClient {
 		civ.setBounds(52, 85, 180, 22);
 		frmNouveauClient.getContentPane().add(civ);
 		
-		JButton btnInserer = new ModernButton("Inserer");
+		JButton btnInserer = new MonBoutton("Inserer");
 		btnInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
