@@ -276,6 +276,7 @@ public class DBAINTERVENTION {
 
 		scrollPane = new JScrollPane();
 		Employe.add(scrollPane, "cell 0 1 3 1,grow");
+		scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
 
 		final MonTableau tableEmploye = new MonTableau();
 		scrollPane.setViewportView(tableEmploye);
@@ -333,6 +334,7 @@ public class DBAINTERVENTION {
 
 		scrollPane = new JScrollPane();
 		marque.add(scrollPane, "cell 0 1 3 1,grow");
+		scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
 
 		final MonTableau tableMarque = new MonTableau();
 		scrollPane.setViewportView(tableMarque);
@@ -396,6 +398,7 @@ public class DBAINTERVENTION {
 
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(7, 46, 626, 255);
+		scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
 		modele.add(scrollPane, "cell 0 1 3 1,grow");
 
 		final MonTableau tableModele = new MonTableau();
@@ -454,6 +457,7 @@ public class DBAINTERVENTION {
 
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(7, 46, 626, 255);
+		scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
 		vehicule.add(scrollPane, "cell 0 1 3 1,grow");
 
 		final MonTableau tableVehicule = new MonTableau();
@@ -515,6 +519,7 @@ public class DBAINTERVENTION {
 
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(7, 46, 626, 255);
+		scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
 		intervenant.add(scrollPane, "cell 0 1 3 1,grow");
 
 		final MonTableau tableIntervenant = new MonTableau();
@@ -562,8 +567,7 @@ public class DBAINTERVENTION {
 		} catch (Exception E) {
 			E.printStackTrace();
 		}
-		
-		
+
 		intervention = new JPanel();
 		intervention.setBackground(new Color(0xC3D6F5));
 		layeredPane.add(intervention, "name_1393742143025600");
@@ -577,6 +581,7 @@ public class DBAINTERVENTION {
 
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(5, 42, 626, 255);
+		scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
 		intervention.add(scrollPane, "cell 0 1 3 1,grow");
 
 		final MonTableau tableInterventions = new MonTableau();
@@ -623,12 +628,12 @@ public class DBAINTERVENTION {
 			E.printStackTrace();
 		}
 
-	
 		requete = new JPanel();
 		requete.setBackground(new Color(0xC3D6F5));
 		layeredPane.add(requete, "name_1392722723516900");
-		requete.setLayout(
-				new MigLayout("", "[57.00:n,grow][10.00:n][73.00px:93.00px][38px,grow][3px][7px][48px,grow][316px][10.00,grow][]", "[][20px][18px][][18px][][17px][19px][136px]"));
+		requete.setLayout(new MigLayout("",
+				"[57.00:n,grow][10.00:n][73.00px:93.00px][38px,grow][3px][7px][48px,grow][316px][10.00,grow][]",
+				"[][20px][18px][][18px][][17px][19px][136px]"));
 
 		final JComboBox comboBox = new MaComboBox();
 		comboBox.addActionListener(new ActionListener() {
@@ -670,18 +675,23 @@ public class DBAINTERVENTION {
 				"2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023" }));
 		anneed.setFont(new Font("Arial", Font.PLAIN, 11));
 		requete.add(anneed, "cell 7 2,alignx left,aligny center");
-		
+
 		final JLabel lblHeureDeDebut = new JLabel("Heure de début :");
 		lblHeureDeDebut.setFont(new Font("Arial", Font.PLAIN, 12));
 		requete.add(lblHeureDeDebut, "cell 2 3,alignx left");
-		
+
 		final MaComboBox heured = new MaComboBox();
-		heured.setModel(new DefaultComboBoxModel(new String[] {"Heure", "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		heured.setModel(new DefaultComboBoxModel(new String[] { "Heure", "00", "01", "02", "03", "04", "05", "06", "07",
+				"08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
 		heured.setFont(new Font("Arial", Font.PLAIN, 11));
 		requete.add(heured, "cell 3 3 3 1,growx");
-		
+
 		final MaComboBox mind = new MaComboBox();
-		mind.setModel(new DefaultComboBoxModel(new String[] {"Minute", "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"}));
+		mind.setModel(new DefaultComboBoxModel(
+				new String[] { "Minute", "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",
+						"13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28",
+						"29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44",
+						"45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
 		mind.setFont(new Font("Arial", Font.PLAIN, 11));
 		requete.add(mind, "cell 6 3,growx");
 
@@ -708,18 +718,23 @@ public class DBAINTERVENTION {
 		final JLabel lblDateDeFin = new JLabel("Date de fin:");
 		lblDateDeFin.setFont(new Font("Arial", Font.PLAIN, 12));
 		requete.add(lblDateDeFin, "cell 2 4,alignx left,aligny center");
-		
+
 		final JLabel lblHeureDeFin = new JLabel("Heure de fin :");
 		lblHeureDeFin.setFont(new Font("Arial", Font.PLAIN, 12));
 		requete.add(lblHeureDeFin, "cell 2 5,alignx left");
-		
+
 		final MaComboBox heuref = new MaComboBox();
-		heuref.setModel(new DefaultComboBoxModel(new String[] {"Heure", "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		heuref.setModel(new DefaultComboBoxModel(new String[] { "Heure", "00", "01", "02", "03", "04", "05", "06", "07",
+				"08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
 		heuref.setFont(new Font("Arial", Font.PLAIN, 11));
 		requete.add(heuref, "cell 3 5 3 1,growx");
-		
+
 		final MaComboBox minf = new MaComboBox();
-		minf.setModel(new DefaultComboBoxModel(new String[] {"Minute", "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"}));
+		minf.setModel(new DefaultComboBoxModel(
+				new String[] { "Minute", "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",
+						"13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28",
+						"29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44",
+						"45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
 		minf.setFont(new Font("Arial", Font.PLAIN, 11));
 		requete.add(minf, "cell 6 5,growx");
 
@@ -736,23 +751,23 @@ public class DBAINTERVENTION {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Class.forName("oracle.jdbc.driver.OracleDriver");
-					connection = DriverManager
-							.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
+					connection = DriverManager.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
 					stmt = connection.createStatement();
-					String datedebString = jourd.getSelectedItem().toString() + "-"
-							+ moisd.getSelectedItem().toString() + "-"
-							+ anneed.getSelectedItem().toString();
-					String datefinString = jourf.getSelectedItem().toString() + "-"
-							+ moisf.getSelectedItem().toString() + "-"
-							+ anneef.getSelectedItem().toString();
+					String datedebString = jourd.getSelectedItem().toString() + "-" + moisd.getSelectedItem().toString()
+							+ "-" + anneed.getSelectedItem().toString();
+					String datefinString = jourf.getSelectedItem().toString() + "-" + moisf.getSelectedItem().toString()
+							+ "-" + anneef.getSelectedItem().toString();
 					String sqlString = String.format(
 							"Update interventions set DATEDEBINTERV=TO_DATE('%s %s:%s','DD-MM-RRRR HH24:MI') where NUMINTERVENTION=%s",
-							datedebString,heured.getSelectedItem().toString(),mind.getSelectedItem().toString(), num.getText());
+							datedebString, heured.getSelectedItem().toString(), mind.getSelectedItem().toString(),
+							num.getText());
 					rs = stmt.executeQuery(sqlString);
 
 					sqlString = String.format(
 							"Update interventions set DATEFININTERV=TO_DATE('%s %s:%s','DD-MM-RRRR HH24:MI') where NUMINTERVENTION=%s",
-							datefinString,heuref.getSelectedItem().toString(),minf.getSelectedItem().toString(), num.getText());;
+							datefinString, heuref.getSelectedItem().toString(), minf.getSelectedItem().toString(),
+							num.getText());
+					;
 					rs = stmt.executeQuery(sqlString);
 
 					System.out.println(sqlString);
@@ -763,10 +778,10 @@ public class DBAINTERVENTION {
 			}
 		});
 
-
 		requete.add(Exec, "cell 6 7 2 1,alignx left,aligny top");
 
 		final JScrollPane scrollPane = new JScrollPane();
+		scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0));
 		requete.add(scrollPane, "cell 1 8 7 1,grow");
 
 		final MonTableau table = new MonTableau();
@@ -810,9 +825,9 @@ public class DBAINTERVENTION {
 					requete.add(minf, "cell 6 5,growx");
 					requete.add(lblHeureDeDebut, "cell 2 3,alignx left");
 					requete.add(lblHeureDeFin, "cell 2 5,alignx left");
-					minf.setVisible(true);					
+					minf.setVisible(true);
 					requete.add(Exec, "cell 6 7 2 1,alignx left,aligny top");
-					
+
 					Exec.setVisible(true);
 
 					Exec.addActionListener(new ActionListener() {
@@ -830,12 +845,15 @@ public class DBAINTERVENTION {
 										+ anneef.getSelectedItem().toString();
 								String sqlString = String.format(
 										"Update interventions set DATEDEBINTERV=TO_DATE('%s %s:%s','DD-MM-RRRR HH24:MI') where NUMINTERVENTION=%s",
-										datedebString,heured.getSelectedItem().toString(),mind.getSelectedItem().toString(), num.getText());
+										datedebString, heured.getSelectedItem().toString(),
+										mind.getSelectedItem().toString(), num.getText());
 								rs = stmt.executeQuery(sqlString);
 
 								sqlString = String.format(
 										"Update interventions set DATEFININTERV=TO_DATE('%s %s:%s','DD-MM-RRRR HH24:MI') where NUMINTERVENTION=%s",
-										datefinString,heuref.getSelectedItem().toString(),minf.getSelectedItem().toString(), num.getText());;
+										datefinString, heuref.getSelectedItem().toString(),
+										minf.getSelectedItem().toString(), num.getText());
+								;
 								rs = stmt.executeQuery(sqlString);
 
 								System.out.println(sqlString);
@@ -926,7 +944,7 @@ public class DBAINTERVENTION {
 				}
 				case "• Afficher les détails d’une intervention": {
 					scrollPane.setVisible(true);
-					final JTable tableRequteIntervention= new MonTableau();
+					final JTable tableRequteIntervention = new MonTableau();
 					scrollPane.setViewportView(tableRequteIntervention);
 					lblDateDeDebut.setVisible(false);
 					requete.add(lblDateDeDebut, "cell 9 6,alignx left,aligny center");
@@ -951,8 +969,7 @@ public class DBAINTERVENTION {
 					Exec.setVisible(true);
 					requete.add(Exec, "cell 6 3 2 1,alignx left,aligny top");
 					requete.add(scrollPane, "cell 1 4 8 4,grow ");
-//					DefaultTableModel model = new DefaultTableModel();
-//					table.setModel(model);
+
 
 					Exec.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -1087,7 +1104,7 @@ public class DBAINTERVENTION {
 				}
 				case "• Afficher la liste des interventions faites par un employé": {
 					scrollPane.setVisible(true);
-					final JTable tableRequteInterventionEmploye=new MonTableau();
+					final JTable tableRequteInterventionEmploye = new MonTableau();
 					scrollPane.setViewportView(tableRequteInterventionEmploye);
 					lblDateDeDebut.setVisible(false);
 					requete.add(lblDateDeDebut, "cell 9 6,alignx left,aligny center");
@@ -1120,8 +1137,7 @@ public class DBAINTERVENTION {
 					Exec.setVisible(true);
 					requete.add(Exec, "cell 6 3 2 1,alignx left,aligny top");
 					requete.add(scrollPane, "cell 1 4 7 4,grow ");
-//					DefaultTableModel model = new DefaultTableModel();
-//					table.setModel(model);
+
 
 					Exec.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -1209,83 +1225,6 @@ public class DBAINTERVENTION {
 			}
 
 		});
-//		JLayeredPane requete1 = new JLayeredPane();
-//		requete1.setBackground(new Color(0xC3D6F5));
-//		layeredPane.add(requete1, "name_1465341696889900");
-//		requete1.setLayout(new CardLayout(0, 0));
-//		
-//		JPanel panel_1 = new JPanel();
-//		requete1.add(panel_1, "name_1465480996461400");
-//		panel_1.setBackground(new Color(0xC3D6F5));
-//		panel_1.setLayout(
-//				new MigLayout("", "[57.00:n,grow][10.00:n][73.00px:93.00px][38px,grow][3px][7px][48px,grow][316px][10.00,grow][]", "[][20px][18px][][18px][][17px][19px][136px]"));
-//		
-//		panel_1.add(lblDateDeDebut, "cell 2 2,alignx left,aligny center");
-//		lblDateDeDebut.setVisible(true);
-//		panel_1.add(comboBox, "cell 2 1 6 1,alignx left,aligny center");
-//		panel_1.add(jourd, "cell 3 2 3 1,growx,aligny center");
-//		jourd.setVisible(true);
-//		panel_1.add(moisd, "cell 6 2,growx,aligny center");
-//		moisd.setVisible(true);
-//		panel_1.add(anneed, "cell 7 2,alignx left,aligny center");
-//		anneed.setVisible(true);
-//		panel_1.add(anneef, "cell 7 4,alignx left,aligny center");
-//		anneef.setVisible(true);
-//		panel_1.add(moisf, "cell 6 4,growx,aligny center");
-//		moisf.setVisible(true);
-//		panel_1.add(jourf, "cell 3 4 3 1,growx,aligny center");
-//		jourf.setVisible(true);
-//		panel_1.add(lblDateDeFin, "cell 2 4,alignx left,aligny center");
-//		lblDateDeFin.setVisible(true);
-//		panel_1.add(numText, "cell 2 6 3 1,alignx left,aligny center");
-//		numText.setVisible(true);
-//		numText.setText("Numéro de l'intervention :");
-//		panel_1.add(num, "cell 5 6 3 1,alignx left,aligny top");
-//		num.setVisible(true);
-//		panel_1.add(heured, "cell 3 3 3 1,growx");
-//		heured.setVisible(true);
-//		panel_1.add(mind, "cell 6 3,growx");
-//		mind.setVisible(true);
-//		panel_1.add(heuref, "cell 3 5 3 1,growx");
-//		heuref.setVisible(true);
-//		panel_1.add(minf, "cell 6 5,growx");
-//		panel_1.add(lblHeureDeDebut, "cell 2 3,alignx left");
-//		panel_1.add(lblHeureDeFin, "cell 2 5,alignx left");
-//		minf.setVisible(true);					
-//		panel_1.add(Exec, "cell 6 7 2 1,alignx left,aligny top");
-//		
-//		Exec.setVisible(true);
-//
-//		Exec.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				try {
-//					Class.forName("oracle.jdbc.driver.OracleDriver");
-//					connection = DriverManager
-//							.getConnection("jdbc:oracle:thin:dbaintervention/orcl1234@localhost");
-//					stmt = connection.createStatement();
-//					String datedebString = jourd.getSelectedItem().toString() + "-"
-//							+ moisd.getSelectedItem().toString() + "-"
-//							+ anneed.getSelectedItem().toString();
-//					String datefinString = jourf.getSelectedItem().toString() + "-"
-//							+ moisf.getSelectedItem().toString() + "-"
-//							+ anneef.getSelectedItem().toString();
-//					String sqlString = String.format(
-//							"Update interventions set DATEDEBINTERV=TO_DATE('%s %s:%s','RRRR-MM-DD HH24:MI') where NUMINTERVENTION=%s",
-//							datedebString,heured.getSelectedItem().toString(),mind.getSelectedItem().toString(), num.getText());
-//					rs = stmt.executeQuery(sqlString);
-//
-//					sqlString = String.format(
-//							"Update interventions set DATEDEBINTERV=TO_DATE('%s %s:%s','RRRR-MM-DD HH24:MI') where NUMINTERVENTION=%s",
-//							datedebString,heuref.getSelectedItem().toString(),minf.getSelectedItem().toString(), num.getText());;
-//					rs = stmt.executeQuery(sqlString);
-//
-//					System.out.print(sqlString);
-//
-//				} catch (Exception E) {
-//					E.printStackTrace();
-//				}
-//			}
-//		});
 	}
 
 	public void changerPannel(JPanel p) {
